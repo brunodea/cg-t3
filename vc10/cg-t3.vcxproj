@@ -68,6 +68,9 @@
     <ClCompile Include="..\src\main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\include\Core\Matrix.hpp" />
+    <ClInclude Include="..\include\Core\matrix_functions.hpp" />
+    <ClInclude Include="..\include\Core\Vector.hpp" />
     <ClInclude Include="..\include\GUI\MainWindow.h" />
     <ClInclude Include="..\include\GUI\Sidebar\Sidebar.h" />
     <ClInclude Include="..\include\macros.h" />

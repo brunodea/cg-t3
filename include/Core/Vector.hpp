@@ -16,7 +16,7 @@ namespace Core
         Vector(const Vector<T, M> &vec)
         {
             for(unsigned int i = 0; i < M; i++)
-                set(vec[i], i, 0);
+                set(vec(i,0), i, 0);
         }
 
         Vector(T val) : Matrix<T, M, 1>()
@@ -45,6 +45,7 @@ namespace Core
             return res;
         }*/
 
+        //Crossproduct generico.
         inline Vector<T, M> crossProduct(const Vector<T, M> &vec)
         {
             Vector<T, M> res;
@@ -75,13 +76,6 @@ namespace Core
         }
 
         inline Vector<T, M> &operator =(Vector<T, M> &vec)
-        {
-            for(unsigned int i = 0; i < M; i++)
-                set(vec[i], i, 0);
-            return (*this);
-        }
-
-        inline Vector<T, M> &operator =(const Vector<T, M> &vec)
         {
             for(unsigned int i = 0; i < M; i++)
                 set(vec[i], i, 0);

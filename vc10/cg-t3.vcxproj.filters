@@ -22,6 +22,9 @@
     <Filter Include="Source Files\GUI">
       <UniqueIdentifier>{13f6f25b-eac8-472c-981b-10bb2a8e5955}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Core">
+      <UniqueIdentifier>{0525a107-075f-4da6-a3cd-222c29e58f8c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\main.cpp">
@@ -40,6 +43,15 @@
     </ClInclude>
     <ClInclude Include="..\include\GUI\MainWindow.h">
       <Filter>Header Files\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\Core\Matrix.hpp">
+      <Filter>Header Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\Core\matrix_functions.hpp">
+      <Filter>Header Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\Core\Vector.hpp">
+      <Filter>Header Files\Core</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
