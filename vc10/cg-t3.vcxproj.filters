@@ -13,10 +13,33 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Header Files\GUI">
+      <UniqueIdentifier>{88cf2212-9425-45ea-a101-9f5a449de9d3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\GUI\Sidebar">
+      <UniqueIdentifier>{383af3fc-8d5d-4d27-a982-07078ce06909}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GUI">
+      <UniqueIdentifier>{13f6f25b-eac8-472c-981b-10bb2a8e5955}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\GUI\MainWindow.cpp">
+      <Filter>Source Files\GUI</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\include\macros.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\GUI\Sidebar\Sidebar.h">
+      <Filter>Header Files\GUI\Sidebar</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\GUI\MainWindow.h">
+      <Filter>Header Files\GUI</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
