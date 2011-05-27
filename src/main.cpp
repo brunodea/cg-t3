@@ -1,4 +1,5 @@
 #include <SCV/SCV.h>
+#include "macros.h"
 
 int main()
 {
@@ -6,8 +7,7 @@ int main()
     scv::ColorScheme *color_scheme = scv::ColorScheme::getInstance();
 
     color_scheme->loadScheme(scv::ColorScheme::clean);
-    kernel->setWindowSize(600, 480);
-    kernel->lockWindowSize(true);
+    kernel->setWindowSize(WINDOW_WIDTH, WINDOW_HEIGHT);
     kernel->setWindowTitle("Synthetic Camera by Bruno Romero de Azevedo.");
 
 
