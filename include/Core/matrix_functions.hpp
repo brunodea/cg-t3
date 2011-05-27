@@ -15,7 +15,8 @@ namespace Core
     typedef Vector<float, 4> Vector4;
     typedef Vector<float, 3> Vector3;
     typedef Vector<float, 2> Vector2;
-
+    
+    typedef Matrix<float, 4> Matrix4;
     typedef Matrix<float, 3> Matrix3;
     typedef Matrix<float, 2> Matrix2;
 
@@ -49,13 +50,38 @@ namespace Core
         return res;
     }
 
-    inline Matrix3 rotate(float ang)
+    inline Matrix4 rotateX(float ang)
     {
-        Matrix3 res = identity<3>();
+        Matrix4 res = identity<4>();
+        res.set(cos(ang), 1, 1);
+        res.set(cos(ang), 2, 2);
+
+        res.set(sin(ang), 2, 1);
+        res.set(-sin(ang), 1, 2);
+
+        return res;
+    }
+
+    inline Matrix4 rotateY(float ang)
+    {
+        Matrix4 res = identity<4>();
         res.set(cos(ang), 0, 0);
+        res.set(cos(ang), 2, 2);
+
+        res.set(sin(ang), 0, 2);
+        res.set(-sin(ang), 2, 0);
+
+        return res;
+    }
+
+    inline Matrix4 rotateZ(float ang)
+    {
+        Matrix4 res = identity<4>();
+        res.set(cos(ang), 0, 0);
+        res.set(cos(ang), 1, 1);
+
         res.set(sin(ang), 1, 0);
         res.set(-sin(ang), 0, 1);
-        res.set(cos(ang), 1, 1);
 
         return res;
     }
@@ -79,11 +105,11 @@ namespace Core
         return res;
     }
 
-    template<unsigned int M>
-    bool isUnitary(const Vector<float, M> &vec)
-    {
-        return norm(vec) >= .5f || norm(vec) <= 1.5f; //com margem de erro .5 pra mais ou pra menos.
-    }
+    //template<unsigned int M>
+    //bool isUnitary(const Vector<float, M> &vec)
+    //{
+    //    return norm(vec) >= .5f || norm(vec) <= 1.5f; //com margem de erro .5 pra mais ou pra menos.
+    //}
 
     template<unsigned int M>
     const float angle(const Vector<float, M> &v1, const Vector<float, M> &v2)
