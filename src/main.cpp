@@ -2,8 +2,6 @@
 #include "macros.h"
 #include "GUI/MainWindow.h"
 
-#include "Core/matrix_functions.hpp"
-
 int main()
 {
     scv::Kernel *kernel = scv::Kernel::getInstance();
