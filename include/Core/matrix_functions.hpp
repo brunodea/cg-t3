@@ -50,6 +50,16 @@ namespace Core
         return res;
     }
 
+    Matrix4 translate3f(float x, float y, float z)
+    {
+        Vector4 vec(1.f);
+        vec[0] = x;
+        vec[1] = y;
+        vec[2] = z;
+
+        return translate(vec);
+    }
+
     inline Matrix4 rotateX(float ang)
     {
         Matrix4 res = identity<4>();
@@ -84,6 +94,26 @@ namespace Core
         res.set(-sin(ang), 0, 1);
 
         return res;
+    }
+
+    template<unsigned int M>
+    inline Matrix<float, M> scale(const Vector<float, M> &vec)
+    {
+        Matrix<float, M> res = identity<M>();
+        for(unsigned int i = 0; i < M-1; i++)
+            res.set(vec(i,0),i,i);
+
+        return res;
+    }
+
+    inline Matrix4 scale3f(float sx, float sy, float sz)
+    {
+        Vector4 vec(1.f);
+        vec[0] = sx;
+        vec[1] = sy;
+        vec[2] = sz;
+
+        return scale(vec);
     }
 
     template<unsigned int M>
