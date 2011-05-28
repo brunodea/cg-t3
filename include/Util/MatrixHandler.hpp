@@ -13,6 +13,8 @@ namespace Util
         void loadIdentity();
         void transform(Core::Matrix4 &mat);
 
+        inline Core::Matrix4 getMatrix() { return m_Matrix4; }
+
     private:
         MatrixHandler();
 

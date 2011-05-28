@@ -67,6 +67,7 @@
     <ClCompile Include="..\src\GUI\Canvas\Canvas.cpp" />
     <ClCompile Include="..\src\GUI\MainWindow.cpp" />
     <ClCompile Include="..\src\main.cpp" />
+    <ClCompile Include="..\src\Util\MatrixHandler.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\include\Core\Matrix.hpp" />
@@ -76,6 +77,7 @@
     <ClInclude Include="..\include\GUI\MainWindow.h" />
     <ClInclude Include="..\include\GUI\Sidebar\Sidebar.h" />
     <ClInclude Include="..\include\macros.h" />
+    <ClInclude Include="..\include\Util\MatrixHandler.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
