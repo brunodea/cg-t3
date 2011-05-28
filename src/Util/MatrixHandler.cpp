@@ -5,8 +5,13 @@ using namespace Util;
 MatrixHandler *MatrixHandler::m_sInstance = NULL;
 
 MatrixHandler::MatrixHandler()
-    : m_ModelViewMatrix(0.f)
 {
+    m_pModelViewMatrix = new Core::Matrix4(0.f);
+}
+
+MatrixHandler::~MatrixHandler()
+{
+    delete m_pModelViewMatrix;
 }
 
 MatrixHandler MatrixHandler::instance()
@@ -19,12 +24,13 @@ MatrixHandler MatrixHandler::instance()
 
 void MatrixHandler::loadIdentity()
 {
-    m_ModelViewMatrix = Core::identity<4>();
+    Core::Matrix4 m = Core::identity<4>();
+    m_pModelViewMatrix = &m;
 }
 
 void MatrixHandler::transform(Core::Matrix4 &mat)
 {
-    m_ModelViewMatrix = m_ModelViewMatrix*mat;
+    m_pModelViewMatrix = &((*m_pModelViewMatrix)*mat);
 }
 
 void MatrixHandler::translate(float x, float y, float z)

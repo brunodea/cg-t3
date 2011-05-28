@@ -10,7 +10,7 @@ int main()
     color_scheme->loadScheme(scv::ColorScheme::clean);
     kernel->setWindowSize(WINDOW_WIDTH, WINDOW_HEIGHT);
     kernel->setWindowTitle("Synthetic Camera by Bruno Romero de Azevedo.");
-
+    
     GUI::MainWindow *mainWindow = new GUI::MainWindow(); //para inicializar as componentes da tela.
 
     kernel->setFramesPerSecond(60);

@@ -3,11 +3,14 @@
 
 #include "Core/matrix_functions.hpp"
 
+#include <stack>
+
 namespace Util
 {
     class MatrixHandler
     {
     public:
+        ~MatrixHandler();
         static MatrixHandler instance();
 
         void loadIdentity();
@@ -18,7 +21,21 @@ namespace Util
         void rotateZ(float angle);
         void scale(float sx, float sy, float sz);
 
-        inline Core::Matrix4 getModelViewMatrix() { return m_ModelViewMatrix; }
+        inline void pushMatrix() 
+        { 
+            m_MatrixStack.push(Core::Matrix4(*m_pModelViewMatrix));
+        }
+        inline void popMatrix() 
+        { 
+            m_MatrixStack.pop(); 
+            if(!m_MatrixStack.empty())
+            {                
+                std::stack<Core::Matrix4>::reference m = m_MatrixStack.top();
+                m_pModelViewMatrix = &m;
+            }
+            else
+                loadIdentity();
+        }
 
     private:
         MatrixHandler();
@@ -26,7 +43,9 @@ namespace Util
     private:
         static MatrixHandler *m_sInstance;
 
-        Core::Matrix4 m_ModelViewMatrix;
+        Core::Matrix4 *m_pModelViewMatrix;
+
+        std::stack<Core::Matrix4> m_MatrixStack;
 
     }; //end of class MatrixHandler.
 } //end of namespace Util.
