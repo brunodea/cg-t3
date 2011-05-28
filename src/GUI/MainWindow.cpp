@@ -21,7 +21,6 @@ void MainWindow::init()
     int sidebar_w = 150;
     m_pSidebar = new Sidebar(0, 0, sidebar_w, WINDOW_HEIGHT);
     m_pCanvas = new Canvas(sidebar_w, 0, WINDOW_WIDTH - sidebar_w, WINDOW_HEIGHT);
-    m_pCanvas->setBGColor(0.f, 0.f, 0.f);
 }
 
 void MainWindow::addElementsToKernel()
