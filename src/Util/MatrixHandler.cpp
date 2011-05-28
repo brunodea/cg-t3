@@ -5,7 +5,7 @@ using namespace Util;
 MatrixHandler *MatrixHandler::m_sInstance = NULL;
 
 MatrixHandler::MatrixHandler()
-    : m_Matrix4(0.f)
+    : m_ModelViewMatrix(0.f)
 {
 }
 
@@ -19,10 +19,40 @@ MatrixHandler MatrixHandler::instance()
 
 void MatrixHandler::loadIdentity()
 {
-    m_Matrix4 = Core::identity<4>();
+    m_ModelViewMatrix = Core::identity<4>();
 }
 
 void MatrixHandler::transform(Core::Matrix4 &mat)
 {
-    m_Matrix4 = m_Matrix4*mat;
+    m_ModelViewMatrix = m_ModelViewMatrix*mat;
+}
+
+void MatrixHandler::translate(float x, float y, float z)
+{
+    Core::Matrix4 m = Core::translate3f(x, y, z);
+    transform(m);
+}
+
+void MatrixHandler::rotateX(float ang)
+{
+    Core::Matrix4 m = Core::rotateX(ang);
+    transform(m);
+}
+
+void MatrixHandler::rotateY(float ang)
+{
+    Core::Matrix4 m = Core::rotateY(ang);
+    transform(m);
+}
+
+void MatrixHandler::rotateZ(float ang)
+{
+    Core::Matrix4 m = Core::rotateZ(ang);
+    transform(m);
+}
+
+void MatrixHandler::scale(float sx, float sy, float sz)
+{
+    Core::Matrix4 m = Core::scale3f(sx, sy, sz);
+    transform(m);
 }

@@ -12,8 +12,13 @@ namespace Util
 
         void loadIdentity();
         void transform(Core::Matrix4 &mat);
+        void translate(float x, float y, float z);
+        void rotateX(float angle);
+        void rotateY(float angle);
+        void rotateZ(float angle);
+        void scale(float sx, float sy, float sz);
 
-        inline Core::Matrix4 getMatrix() { return m_Matrix4; }
+        inline Core::Matrix4 getModelViewMatrix() { return m_ModelViewMatrix; }
 
     private:
         MatrixHandler();
@@ -21,7 +26,7 @@ namespace Util
     private:
         static MatrixHandler *m_sInstance;
 
-        Core::Matrix4 m_Matrix4;
+        Core::Matrix4 m_ModelViewMatrix;
 
     }; //end of class MatrixHandler.
 } //end of namespace Util.
