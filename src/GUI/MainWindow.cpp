@@ -5,22 +5,27 @@ using namespace GUI;
 
 MainWindow::MainWindow()
 {
-    initSidebar();
+    init();
 
     addElementsToKernel();
 }
 
 MainWindow::~MainWindow()
 {
-    delete m_pSideBar;
+    delete m_pSidebar;
+    delete m_pCanvas;
 }
 
-void MainWindow::initSidebar()
+void MainWindow::init()
 {
-    m_pSideBar = new Sidebar(0, 0, 100, WINDOW_HEIGHT);
+    int sidebar_w = 150;
+    m_pSidebar = new Sidebar(0, 0, sidebar_w, WINDOW_HEIGHT);
+    m_pCanvas = new Canvas(sidebar_w, 0, WINDOW_WIDTH - sidebar_w, WINDOW_HEIGHT);
+    m_pCanvas->setBGColor(0.f, 0.f, 0.f);
 }
 
 void MainWindow::addElementsToKernel()
 {
-    scv::Kernel::getInstance()->addComponent(m_pSideBar);
+    scv::Kernel::getInstance()->addComponent(m_pSidebar);
+    scv::Kernel::getInstance()->addComponent(m_pCanvas);
 }

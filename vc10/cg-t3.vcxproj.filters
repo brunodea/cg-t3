@@ -25,6 +25,12 @@
     <Filter Include="Header Files\Core">
       <UniqueIdentifier>{0525a107-075f-4da6-a3cd-222c29e58f8c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\GUI\Canvas">
+      <UniqueIdentifier>{dc274983-3464-4105-9aea-015835f2b4eb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GUI\Canvas">
+      <UniqueIdentifier>{8acfdd10-5e47-4237-85ce-ca32397d8307}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\main.cpp">
@@ -32,6 +38,9 @@
     </ClCompile>
     <ClCompile Include="..\src\GUI\MainWindow.cpp">
       <Filter>Source Files\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\GUI\Canvas\Canvas.cpp">
+      <Filter>Source Files\GUI\Canvas</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -52,6 +61,9 @@
     </ClInclude>
     <ClInclude Include="..\include\Core\Vector.hpp">
       <Filter>Header Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\GUI\Canvas\Canvas.h">
+      <Filter>Header Files\GUI\Canvas</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

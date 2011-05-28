@@ -2,6 +2,7 @@
 #define _BRUNODEA_CG_T3_MAIN_WINDOW_H_
 
 #include "Sidebar/Sidebar.h"
+#include "Canvas/Canvas.h"
 
 namespace GUI
 {
@@ -12,11 +13,12 @@ namespace GUI
         ~MainWindow();
 
     private:
-        void initSidebar();
+        void init();
         void addElementsToKernel();
 
     private:
-        Sidebar *m_pSideBar;
+        Sidebar *m_pSidebar;
+        Canvas *m_pCanvas;
 
     }; //end of class MainWindow.
 } //end of namespace GUI.
