@@ -9,11 +9,11 @@ Canvas::Canvas(int pos_x, int pos_y, int width, int height)
     : scv::Canvas(scv::Point(pos_x, pos_y), width, height), m_Camera()
 {
     Core::Vector4 v(1.f);
-    v[0] = 0.f;
-    v[1] = 0.f;
-    v[2] = 100.f;
+    v[0] = 1.f;
+    v[1] = 1.f;
+    v[2] = 1.f;
     Core::Vector3 t(0.f);
-    Core::Vector4 u(0.f);
+    Core::Vector4 u(1.f);
     u = Core::rotateY(3.15169265/2.f)*v;
 
 
@@ -27,14 +27,12 @@ Canvas::Canvas(int pos_x, int pos_y, int width, int height)
         v2[0] = (*v)[0];
         v2[1] = (*v)[1];
         v2[2] = (*v)[2];
-
-        /*Core::Vector2 proj = m_Camera.project(*v);
-        v2[0] = proj[0];
-        v2[1] = proj[1];*/
+        
+        Core::Matrix4 proj = Core::projection(45.f, (float)getWidth()/getHeight(), .1f, 1000.f);
 
         Core::Matrix4 m(*Util::MODELVIEW.getCurrMatrix());
-        v2 = Core::projection(v2);
         v2 = m*v2;
+        //v2 = proj*v2;
 
         (*v)[0] = v2[0];
         (*v)[1] = v2[1];
@@ -98,7 +96,7 @@ void Canvas::render()
         for(int i = 0; i < m_CubeVertices.size(); i++)
         {
             Core::Vector3 v = m_CubeVertices.at(i);
-            glVertex3f(m_CubeVertices.at(i)[0], m_CubeVertices.at(i)[1], m_CubeVertices.at(i)[2]);// /*-m_Camera.getEye()[2]*/);
+            glVertex2f(m_CubeVertices.at(i)[0], m_CubeVertices.at(i)[1]);//, m_CubeVertices.at(i)[2]);// /*-m_Camera.getEye()[2]*/);
         }
 
         glEnd();

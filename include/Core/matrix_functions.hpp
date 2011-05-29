@@ -49,16 +49,49 @@ namespace Core
         return res;
     }
 
-    inline Vector4 projection(const Vector4 &vec)
+    inline Matrix4 projection(float fov, float aspect, float znear, float zfar)
     {
-        Matrix4 m = Core::identity<4>();
-        m.set(0, 3, 3);
-        m.set(1/10.f, 3, 2);
+        Matrix4 m(0);
+        float xmax = znear*tan(fov*3.14159265/360.f);
+        float xmin = -xmax;
 
-        Vector4 res = vec;
-        res = m*res;
+        float ymin = xmin/aspect;
+        float ymax = xmax/aspect;
 
-        return res;
+        m.set((2*znear)/(xmax-xmin),0,0);
+        m.set((2*znear)/(ymax-ymin),1,1);
+        m.set(-(zfar+znear)/(zfar-znear),2,2);
+
+        m.set((xmax+xmin)/(xmax-xmin),0,2);
+        m.set((ymax+ymin)/(ymax-ymin),1,2);
+        m.set(-1.f,3,2);
+
+        m.set(-(2*zfar*znear)/(zfar-znear),2,3);
+
+
+        /*float xymax = znear*tan(fov*3.14159265/360.f);
+        float ymin = -xymax;
+        float xmin = -xymax;
+
+        float width = xymax - xmin;
+        float height = xymax - ymin;
+
+        float depth = zfar - znear;
+        float q = -(zfar+znear)/depth;
+        float qn = -2*(zfar-znear)/depth;
+
+        float w = 2*znear/width;
+        w = w/aspect;
+        float h = 2*znear/height;
+
+        m.set(w,0,0);
+        m.set(h,1,1);
+        m.set(q,2,2);
+        m.set(-1,3,2);
+        m.set(qn,3,3);*/
+
+
+        return m;
     }
 
     template<unsigned int M>
