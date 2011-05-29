@@ -49,6 +49,18 @@ namespace Core
         return res;
     }
 
+    inline Vector4 projection(const Vector4 &vec)
+    {
+        Matrix4 m = Core::identity<4>();
+        m.set(0, 3, 3);
+        m.set(1/10.f, 3, 2);
+
+        Vector4 res = vec;
+        res = m*res;
+
+        return res;
+    }
+
     template<unsigned int M>
     Matrix<float, M> translate(const Vector<float, M> &vec)
     {

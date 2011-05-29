@@ -8,7 +8,17 @@ using namespace GUI;
 Canvas::Canvas(int pos_x, int pos_y, int width, int height)
     : scv::Canvas(scv::Point(pos_x, pos_y), width, height), m_Camera()
 {
-    m_Camera.lookAt(0.f,10.f,10.f, 0.f,0.f,0.f, 0.f,0.f,1.f);
+    Core::Vector4 v(1.f);
+    v[0] = 0.f;
+    v[1] = 0.f;
+    v[2] = 100.f;
+    Core::Vector3 t(0.f);
+    Core::Vector4 u(0.f);
+    u = Core::rotateY(3.15169265/2.f)*v;
+
+
+
+    m_Camera.lookAt(v[0],v[1],v[2], t[0],t[1],t[2], u[0],u[1],u[2]);
     initCube();
     for(int i = 0; i < m_CubeVertices.size(); i++)
     {
@@ -23,6 +33,7 @@ Canvas::Canvas(int pos_x, int pos_y, int width, int height)
         v2[1] = proj[1];*/
 
         Core::Matrix4 m(*Util::MODELVIEW.getCurrMatrix());
+        v2 = Core::projection(v2);
         v2 = m*v2;
 
         (*v)[0] = v2[0];
@@ -67,7 +78,7 @@ void Canvas::render()
     glLoadIdentity();
 
     //gluPerspective(45, getWidth()/getHeight(), 0.1, 500);
-    glOrtho(-100,100,-100,100,100,-100);
+    glOrtho(-500,500,-500,500,500,-500);
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
     

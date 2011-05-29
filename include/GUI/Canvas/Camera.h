@@ -82,7 +82,7 @@ namespace CANVAS
 
             t = Core::translate(eye4);
 
-            Core::Matrix4 mt = t*r; //matriz inversa.
+            Core::Matrix4 mt = r*t; //matriz inversa.
 
             Util::MODELVIEW.transform(mt);
             m_CameraMatrix = mt;
