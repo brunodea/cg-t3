@@ -64,6 +64,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\src\GUI\Canvas\Camera.cpp" />
     <ClCompile Include="..\src\GUI\Canvas\Canvas.cpp" />
     <ClCompile Include="..\src\GUI\MainWindow.cpp" />
     <ClCompile Include="..\src\main.cpp" />
@@ -73,6 +74,7 @@
     <ClInclude Include="..\include\Core\Matrix.hpp" />
     <ClInclude Include="..\include\Core\matrix_functions.hpp" />
     <ClInclude Include="..\include\Core\Vector.hpp" />
+    <ClInclude Include="..\include\GUI\Canvas\Camera.h" />
     <ClInclude Include="..\include\GUI\Canvas\Canvas.h" />
     <ClInclude Include="..\include\GUI\MainWindow.h" />
     <ClInclude Include="..\include\GUI\Sidebar\Sidebar.h" />

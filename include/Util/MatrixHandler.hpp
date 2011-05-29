@@ -23,19 +23,21 @@ namespace Util
 
         inline void pushMatrix() 
         { 
-            m_MatrixStack.push(Core::Matrix4(*m_pModelViewMatrix));
+            //m_MatrixStack.push(Core::Matrix4(*m_pModelViewMatrix));
         }
         inline void popMatrix() 
         { 
-            m_MatrixStack.pop(); 
-            if(!m_MatrixStack.empty())
+            //m_MatrixStack.pop(); 
+            /*if(!m_MatrixStack.empty())
             {                
                 std::stack<Core::Matrix4>::reference m = m_MatrixStack.top();
                 m_pModelViewMatrix = &m;
             }
             else
-                loadIdentity();
+                loadIdentity();*/
         }
+
+        Core::Matrix4 *getCurrMatrix() { return m_pModelViewMatrix; }
 
     private:
         MatrixHandler();

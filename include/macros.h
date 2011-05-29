@@ -5,6 +5,5 @@
 #define WINDOW_HEIGHT 480
 
 #define MODELVIEW MatrixHandler::instance()
-#define MODELVIEW_MATRIX MatrixHandler::instance().getModelViewMatrix()
 
 #endif

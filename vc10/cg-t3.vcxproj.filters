@@ -51,6 +51,9 @@
     <ClCompile Include="..\src\Util\MatrixHandler.cpp">
       <Filter>Source Files\Util</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\GUI\Canvas\Camera.cpp">
+      <Filter>Source Files\GUI\Canvas</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\include\macros.h">
@@ -76,6 +79,9 @@
     </ClInclude>
     <ClInclude Include="..\include\Util\MatrixHandler.hpp">
       <Filter>Header Files\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\GUI\Canvas\Camera.h">
+      <Filter>Header Files\GUI\Canvas</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

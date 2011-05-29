@@ -39,6 +39,16 @@ namespace Core
         return res;
     }
 
+    template<unsigned int M, unsigned int N>
+    Matrix<float, N, M> transpose(const Matrix<float, M, N> &mat)
+    {
+        Matrix<float, N, M> res;
+        for(int i = 0; i < N; i++)
+            for(int j = 0; j < M; j++)
+                res.set(mat(i,j), j, i);
+        return res;
+    }
+
     template<unsigned int M>
     Matrix<float, M> translate(const Vector<float, M> &vec)
     {
@@ -50,7 +60,7 @@ namespace Core
         return res;
     }
 
-    Matrix4 translate3f(float x, float y, float z)
+    inline Matrix4 translate3f(float x, float y, float z)
     {
         Vector4 vec(1.f);
         vec[0] = x;
