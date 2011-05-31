@@ -39,6 +39,61 @@ namespace Core
         return res;
     }
 
+    template<unsigned int M, unsigned int N>
+    Matrix<float, N, M> transpose(const Matrix<float, M, N> &mat)
+    {
+        Matrix<float, N, M> res;
+        for(int i = 0; i < N; i++)
+            for(int j = 0; j < M; j++)
+                res.set(mat(i,j), j, i);
+        return res;
+    }
+
+    inline Matrix4 projection(float fov, float aspect, float znear, float zfar)
+    {
+        Matrix4 m(0);
+        float xmax = znear*tan(fov*3.14159265/360.f);
+        float xmin = -xmax;
+
+        float ymin = xmin/aspect;
+        float ymax = xmax/aspect;
+
+        m.set((2*znear)/(xmax-xmin),0,0);
+        m.set((2*znear)/(ymax-ymin),1,1);
+        m.set(-(zfar+znear)/(zfar-znear),2,2);
+
+        m.set((xmax+xmin)/(xmax-xmin),0,2);
+        m.set((ymax+ymin)/(ymax-ymin),1,2);
+        m.set(-1.f,3,2);
+
+        m.set(-(2*zfar*znear)/(zfar-znear),2,3);
+
+
+        /*float xymax = znear*tan(fov*3.14159265/360.f);
+        float ymin = -xymax;
+        float xmin = -xymax;
+
+        float width = xymax - xmin;
+        float height = xymax - ymin;
+
+        float depth = zfar - znear;
+        float q = -(zfar+znear)/depth;
+        float qn = -2*(zfar-znear)/depth;
+
+        float w = 2*znear/width;
+        w = w/aspect;
+        float h = 2*znear/height;
+
+        m.set(w,0,0);
+        m.set(h,1,1);
+        m.set(q,2,2);
+        m.set(-1,3,2);
+        m.set(qn,3,3);*/
+
+
+        return m;
+    }
+
     template<unsigned int M>
     Matrix<float, M> translate(const Vector<float, M> &vec)
     {
@@ -48,6 +103,16 @@ namespace Core
             res.set(vec(i, 0), i, M-1);
 
         return res;
+    }
+
+    inline Matrix4 translate3f(float x, float y, float z)
+    {
+        Vector4 vec(1.f);
+        vec[0] = x;
+        vec[1] = y;
+        vec[2] = z;
+
+        return translate(vec);
     }
 
     inline Matrix4 rotateX(float ang)
@@ -84,6 +149,26 @@ namespace Core
         res.set(-sin(ang), 0, 1);
 
         return res;
+    }
+
+    template<unsigned int M>
+    inline Matrix<float, M> scale(const Vector<float, M> &vec)
+    {
+        Matrix<float, M> res = identity<M>();
+        for(unsigned int i = 0; i < M-1; i++)
+            res.set(vec(i,0),i,i);
+
+        return res;
+    }
+
+    inline Matrix4 scale3f(float sx, float sy, float sz)
+    {
+        Vector4 vec(1.f);
+        vec[0] = sx;
+        vec[1] = sy;
+        vec[2] = sz;
+
+        return scale(vec);
     }
 
     template<unsigned int M>

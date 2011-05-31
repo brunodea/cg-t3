@@ -31,6 +31,12 @@
     <Filter Include="Source Files\GUI\Canvas">
       <UniqueIdentifier>{8acfdd10-5e47-4237-85ce-ca32397d8307}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Util">
+      <UniqueIdentifier>{ceb4a47c-71ee-452f-bccd-149feb0135ef}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Util">
+      <UniqueIdentifier>{07bcdeb5-8946-49d4-a160-c919768896ee}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\main.cpp">
@@ -40,6 +46,12 @@
       <Filter>Source Files\GUI</Filter>
     </ClCompile>
     <ClCompile Include="..\src\GUI\Canvas\Canvas.cpp">
+      <Filter>Source Files\GUI\Canvas</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Util\MatrixHandler.cpp">
+      <Filter>Source Files\Util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\GUI\Canvas\Camera.cpp">
       <Filter>Source Files\GUI\Canvas</Filter>
     </ClCompile>
   </ItemGroup>
@@ -63,6 +75,12 @@
       <Filter>Header Files\Core</Filter>
     </ClInclude>
     <ClInclude Include="..\include\GUI\Canvas\Canvas.h">
+      <Filter>Header Files\GUI\Canvas</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\Util\MatrixHandler.hpp">
+      <Filter>Header Files\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\GUI\Canvas\Camera.h">
       <Filter>Header Files\GUI\Canvas</Filter>
     </ClInclude>
   </ItemGroup>

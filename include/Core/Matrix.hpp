@@ -15,6 +15,11 @@ namespace Core
         Matrix() : m_Rows(M), m_Cols(N)
         {
         }
+        Matrix(T val) : m_Rows(M), m_Cols(N)
+        {
+            clear(val);
+        }
+
         ~Matrix()
         {
         }
