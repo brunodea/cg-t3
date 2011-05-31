@@ -1,6 +1,6 @@
 #include "GUI/Canvas/Canvas.h"
 #include "macros.h"
-#include "Util/MatrixHandler.hpp"
+#include "Util/ModelViewMatrixStack.h"
 #include "Core/Vector.hpp"
 
 using namespace GUI;

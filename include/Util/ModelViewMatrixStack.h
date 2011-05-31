@@ -7,11 +7,11 @@
 
 namespace Util
 {
-    class MatrixHandler
+    class ModelViewMatrixStack
     {
     public:
-        ~MatrixHandler();
-        static MatrixHandler instance();
+        ~ModelViewMatrixStack();
+        static ModelViewMatrixStack instance();
 
         void loadIdentity();
         void transform(Core::Matrix4 &mat);
@@ -40,16 +40,16 @@ namespace Util
         Core::Matrix4 *getCurrMatrix() { return m_pModelViewMatrix; }
 
     private:
-        MatrixHandler();
+        ModelViewMatrixStack();
 
     private:
-        static MatrixHandler *m_sInstance;
+        static ModelViewMatrixStack *m_sInstance;
 
         Core::Matrix4 *m_pModelViewMatrix;
 
         std::stack<Core::Matrix4> m_MatrixStack;
 
-    }; //end of class MatrixHandler.
+    }; //end of class ModelViewMatrixStack.
 } //end of namespace Util.
 
 
