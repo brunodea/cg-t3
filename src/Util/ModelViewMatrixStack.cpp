@@ -7,31 +7,31 @@ ModelViewMatrixStack *ModelViewMatrixStack::m_sInstance = NULL;
 ModelViewMatrixStack::ModelViewMatrixStack()
     : m_MatrixStack()
 {
-    m_pModelViewMatrix = new Core::Matrix4(0.f);
-    loadIdentity();
+    m_MatrixStack.push(Core::identity<4>());
+    m_Top = &m_MatrixStack.top();
 }
 
 ModelViewMatrixStack::~ModelViewMatrixStack()
 {
 }
 
-ModelViewMatrixStack ModelViewMatrixStack::instance()
+ModelViewMatrixStack *ModelViewMatrixStack::instance()
 {
     if(m_sInstance == NULL)
         m_sInstance = new ModelViewMatrixStack();
 
-    return (*m_sInstance);
+    return m_sInstance;
 }
 
 void ModelViewMatrixStack::loadIdentity()
 {
-    Core::Matrix4 m = Core::identity<4>();
-    *m_pModelViewMatrix = m;
+    *m_Top = Core::identity<4>();
 }
 
 void ModelViewMatrixStack::transform(Core::Matrix4 &mat)
 {
-    *m_pModelViewMatrix = (*m_pModelViewMatrix)*mat;
+    m_Top = &m_MatrixStack.top();
+    *m_Top = mat*(*m_Top);
 }
 
 void ModelViewMatrixStack::translate(float x, float y, float z)

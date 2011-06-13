@@ -1,6 +1,7 @@
 #include <SCV/SCV.h>
 #include "macros.h"
 #include "GUI/MainWindow.h"
+#include "Util/ModelViewMatrixStack.h"
 
 int main()
 {
@@ -17,6 +18,7 @@ int main()
     kernel->run();
 
     delete mainWindow;
+    delete Util::MODELVIEW;
 
     return 0;
 }

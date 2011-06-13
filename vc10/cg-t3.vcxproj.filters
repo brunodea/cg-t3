@@ -37,6 +37,12 @@
     <Filter Include="Source Files\Util">
       <UniqueIdentifier>{07bcdeb5-8946-49d4-a160-c919768896ee}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\GUI\math">
+      <UniqueIdentifier>{8b8635ff-6f08-4390-9e53-cff3774c5a34}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\GUI\Canvas\Model">
+      <UniqueIdentifier>{1c110ba6-2c7d-488c-b42c-3665cb4d1442}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\main.cpp">
@@ -48,11 +54,11 @@
     <ClCompile Include="..\src\GUI\Canvas\Canvas.cpp">
       <Filter>Source Files\GUI\Canvas</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\Util\MatrixHandler.cpp">
-      <Filter>Source Files\Util</Filter>
-    </ClCompile>
     <ClCompile Include="..\src\GUI\Canvas\Camera.cpp">
       <Filter>Source Files\GUI\Canvas</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Util\ModelViewMatrixStack.cpp">
+      <Filter>Source Files\Util</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -77,11 +83,29 @@
     <ClInclude Include="..\include\GUI\Canvas\Canvas.h">
       <Filter>Header Files\GUI\Canvas</Filter>
     </ClInclude>
-    <ClInclude Include="..\include\Util\MatrixHandler.hpp">
-      <Filter>Header Files\Util</Filter>
-    </ClInclude>
     <ClInclude Include="..\include\GUI\Canvas\Camera.h">
       <Filter>Header Files\GUI\Canvas</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\Util\ModelViewMatrixStack.h">
+      <Filter>Header Files\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\math\Bezier.hpp">
+      <Filter>Header Files\GUI\math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\math\math_aux.hpp">
+      <Filter>Header Files\GUI\math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\math\BezierSurface.h">
+      <Filter>Header Files\GUI\math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\Model\Cube.hpp">
+      <Filter>Header Files\GUI\Canvas\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\Model\Ground.hpp">
+      <Filter>Header Files\GUI\Canvas\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\Model\Sphere.hpp">
+      <Filter>Header Files\GUI\Canvas\Model</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

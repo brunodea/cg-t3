@@ -4,6 +4,7 @@
 #include "Core/matrix_functions.hpp"
 
 #include <stack>
+#include <vector>
 
 namespace Util
 {
@@ -11,7 +12,7 @@ namespace Util
     {
     public:
         ~ModelViewMatrixStack();
-        static ModelViewMatrixStack instance();
+        static ModelViewMatrixStack *instance();
 
         void loadIdentity();
         void transform(Core::Matrix4 &mat);
@@ -22,22 +23,37 @@ namespace Util
         void scale(float sx, float sy, float sz);
 
         inline void pushMatrix() 
-        { 
-            //m_MatrixStack.push(Core::Matrix4(*m_pModelViewMatrix));
+        {
+            Core::Matrix4 *t = new Core::Matrix4(*m_Top);
+            m_MatrixStack.push(*t);
+            m_Top = t;
         }
         inline void popMatrix() 
         { 
-            //m_MatrixStack.pop(); 
-            /*if(!m_MatrixStack.empty())
-            {                
-                std::stack<Core::Matrix4>::reference m = m_MatrixStack.top();
-                m_pModelViewMatrix = &m;
+            m_MatrixStack.pop();
+            if(m_MatrixStack.empty())
+            {
+                Core::Matrix4 top = Core::identity<4>();
+                m_MatrixStack.push(top);
+                m_Top = &m_MatrixStack.top();
             }
             else
-                loadIdentity();*/
+                m_Top = &m_MatrixStack.top();
         }
 
-        Core::Matrix4 *getCurrMatrix() { return m_pModelViewMatrix; }
+        Core::Matrix4 getTop() { return *m_Top; }
+
+        //para debug.
+        void printStack()
+        {
+            unsigned int size = m_MatrixStack.size();
+            std::cout << "Stack Size: " << size << std::endl;
+            for(unsigned int i = 0; i < size; i++)
+            {
+                m_MatrixStack.top().print();
+                m_MatrixStack.pop();
+            }
+        }
 
     private:
         ModelViewMatrixStack();
@@ -45,9 +61,8 @@ namespace Util
     private:
         static ModelViewMatrixStack *m_sInstance;
 
-        Core::Matrix4 *m_pModelViewMatrix;
-
-        std::stack<Core::Matrix4> m_MatrixStack;
+        std::stack<Core::Matrix4, std::vector<Core::Matrix4>> m_MatrixStack;
+        Core::Matrix4 *m_Top;
 
     }; //end of class ModelViewMatrixStack.
 } //end of namespace Util.

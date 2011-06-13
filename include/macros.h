@@ -5,5 +5,6 @@
 #define WINDOW_HEIGHT 480
 
 #define MODELVIEW ModelViewMatrixStack::instance()
+#define PI 3.14159265
 
 #endif

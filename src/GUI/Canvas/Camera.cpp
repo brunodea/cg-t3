@@ -24,12 +24,3 @@ void Camera::lookAt(float eyex, float eyey, float eyez,
 
     lookAt(eye, center, up);
 }
-
-Core::Vector2 Camera::project(const Core::Vector3 &point)
-{
-    Core::Vector2 res;
-    res[0] = point(0,0)*20/point(2,0);
-    res[1] = point(1,0)*20/point(2,0);
-
-    return res;
-}

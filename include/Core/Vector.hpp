@@ -34,17 +34,6 @@ namespace Core
             return res;
         }
 
-        /* Produto vetorial. */
-        /*inline Vector<T, 3> crossProduct(const Vector<T, 3> &vec)
-        {
-            Vector<T, 3> res;
-            res[0] = ((*this)(1,0)*vec(2,0)) - ((*this)(2,0)*vec(1,0));
-            res[1] = ((*this)(2,0)*vec(0,0)) - ((*this)(0,0)*vec(2,0));
-            res[2] = ((*this)(0,0)*vec(1,0)) - ((*this)(1,0)*vec(0,0));
-
-            return res;
-        }*/
-
         //Crossproduct generico.
         inline Vector<T, M> crossProduct(const Vector<T, M> &vec)
         {

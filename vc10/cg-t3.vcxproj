@@ -68,7 +68,7 @@
     <ClCompile Include="..\src\GUI\Canvas\Canvas.cpp" />
     <ClCompile Include="..\src\GUI\MainWindow.cpp" />
     <ClCompile Include="..\src\main.cpp" />
-    <ClCompile Include="..\src\Util\MatrixHandler.cpp" />
+    <ClCompile Include="..\src\Util\ModelViewMatrixStack.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\include\Core\Matrix.hpp" />
@@ -79,7 +79,13 @@
     <ClInclude Include="..\include\GUI\MainWindow.h" />
     <ClInclude Include="..\include\GUI\Sidebar\Sidebar.h" />
     <ClInclude Include="..\include\macros.h" />
-    <ClInclude Include="..\include\Util\MatrixHandler.hpp" />
+    <ClInclude Include="..\include\math\Bezier.hpp" />
+    <ClInclude Include="..\include\math\BezierSurface.h" />
+    <ClInclude Include="..\include\math\math_aux.hpp" />
+    <ClInclude Include="..\include\Model\Cube.hpp" />
+    <ClInclude Include="..\include\Model\Ground.hpp" />
+    <ClInclude Include="..\include\Model\Sphere.hpp" />
+    <ClInclude Include="..\include\Util\ModelViewMatrixStack.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

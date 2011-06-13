@@ -3,109 +3,111 @@
 
 #include "Core/matrix_functions.hpp"
 #include "macros.h"
-#include "Util/ModelViewMatrixStack.h"
+#include <SCV/SCV.h>
 
 namespace CANVAS
 {
     class Camera
     {
     public:
-        Camera() : m_View3(0), m_XAxis3(0), m_YAxis3(0), m_ZAxis3(0), m_vUp(0), m_vEye3(0)
-        {}
+        Camera() : m_vDirection3(0), m_vUp3(0), m_vEye3(0), m_vRight3(0), m_fSpeed(1.f)
+        {
+            m_vUp3[1] = 1.f;
+            m_vEye3[2] = 1.f;
+            m_vDirection3 = m_vDirection3 - m_vEye3;
+            m_vRight3 = m_vDirection3.crossProduct(m_vUp3);
+        }
 
         void lookAt(float eyex, float eyey, float eyez, 
                     float centerx, float centery, float centerz, 
                     float upx, float upy, float upz);
         inline void lookAt(const Core::Vector3 &eye, const Core::Vector3 &center, const Core::Vector3 &up)
         {
-            m_vEye3 = eye;
-            m_View3 = Core::normalize(center-eye);
-            m_vUp = up;
-            m_ZAxis3 = m_View3;
-            m_ZAxis3 *= -1;
+            m_vDirection3 = Core::normalize(eye - center);
+            m_vUp3 = Core::normalize(up);
+            Core::Vector3 perp = Core::normalize(m_vDirection3.crossProduct(m_vUp3));
+            m_vUp3 = m_vDirection3.crossProduct(perp);
+            m_vRight3 = perp;
 
-            m_XAxis3 = Core::normalize(m_View3.crossProduct(m_vUp));
-            m_YAxis3 = m_XAxis3.crossProduct(m_ZAxis3);
-
-            /*Core::Vector3 orig(0.f);
-            orig[0] = 1.f;
-
-            Core::Vector3 x_orig = m_XAxis3;
-            x_orig *= -1;
-            x_orig = Core::translate(x_orig)*m_XAxis3;
-
-            float angx = Core::angle(x_orig, orig);
-
-            orig[0] = 0.f;
-            orig[1] = 1.f;
-
-            Core::Vector3 y_orig = m_YAxis3;
-            y_orig *= -1;
-            y_orig = Core::translate(y_orig)*m_YAxis3;
-
-            float angy = Core::angle(y_orig, orig);
-
-            orig[1] = 0.f;
-            orig[2] = 1.f;
-
-            Core::Vector3 z_orig = m_ZAxis3;
-            z_orig *= -1;
-            z_orig = Core::translate(z_orig)*m_ZAxis3;
-
-            float angz = Core::angle(z_orig, orig);
-
-            Core::Matrix4 m = Core::rotateX(angx)*Core::rotateY(angy)*Core::rotateZ(angz);
-
-            Util::MODELVIEW.transform(m);
-            m_CameraMatrix = m;*/
-
-
-            ///* Construcao da matriz de transformacao da camera. */
-
-            ///* Copia a matriz dos eixos da camera para o canto esquerdo superior de r. */
-            Core::Matrix4 r = Core::identity<4>();
-            for(int i = 0; i < 3; i++)
-                r.set(m_XAxis3[i],i,0);
-            for(int i = 0; i < 3; i++)
-                r.set(m_YAxis3[i],i,1);
-            for(int i = 0; i < 3; i++)
-                r.set(m_ZAxis3[i],i,2);
-
-            r = Core::transpose(r);
-
-            Core::Matrix4 t = Core::identity<4>();
-            Core::Vector4 eye4(1.f);
-            
-            for(int i = 0; i < 3; i++)
-                eye4[i] = eye(i,0);
-            eye4 *= -1;
-
-            t = Core::translate(eye4);
-
-            Core::Matrix4 mt = r*t; //matriz inversa.
-
-            Util::MODELVIEW.transform(mt);
-            m_CameraMatrix = mt;
+            //Util::MODELVIEW->transform(transMatrix());
         }
 
-        Core::Vector2 project(const Core::Vector3 &point);
+        void rotate(float roll_angle, float yaw_angle, float pitch_angle)
+        {
+            Core::Matrix4 m = Core::rotateZ(pitch_angle)*Core::rotateY(yaw_angle)*Core::rotateX(roll_angle);
+            transform(m);
+        }
 
-        Core::Vector3 getView() { return m_View3; }
-        Core::Vector3 getXAxis() { return m_XAxis3; }
-        Core::Vector3 getYAxis() { return m_YAxis3; }
-        Core::Vector3 getZAxis() { return m_ZAxis3; }
-        Core::Vector3 getUp() { return m_vUp; }
+        void move(float factor_x, float factor_y, float factor_z)
+        {
+            m_vEye3[0] += factor_x;
+            m_vEye3[1] += factor_y;
+            m_vEye3[2] += factor_z;
+        }
+
+        void moveForward() { m_vEye3 -= m_vDirection3*m_fSpeed; }
+        void moveBackwards() { m_vEye3 += m_vDirection3*m_fSpeed; }
+        void moveLeft() { m_vEye3 -= m_vRight3*m_fSpeed; }
+        void moveRight() { m_vEye3 += m_vRight3*m_fSpeed; }
+        void moveUp() { m_vEye3 += m_vUp3*m_fSpeed; }
+        void moveDown() { m_vEye3 -= m_vUp3*m_fSpeed; }
+
+        Core::Vector3 getDirection() { return m_vDirection3; }
+        void setDirection(Core::Vector3 &v) { m_vDirection3 = v; }
+
+        Core::Vector3 getUp() { return m_vUp3; }
+        void setUp(Core::Vector3 &v) { m_vUp3 = v; }
+
         Core::Vector3 getEye() { return m_vEye3; }
+        void setEye(Core::Vector3 &v) { m_vEye3 = v; }
+
+        Core::Vector3 getRight() { return m_vRight3; }
+
+        void setSpeed(float speed) { m_fSpeed = speed; }
+
+        Core::Matrix4 transMatrix()
+        {
+            Core::Matrix4 m = Core::identity<4>();
+            for(int i = 0; i < 3; i++)
+                m.set(m_vRight3[i],0,i);
+            Core::Vector3 e = m_vEye3;
+            m.set(-(m_vRight3.dotProduct(e)),0,3);
+
+            for(int i = 0; i < 3; i++)
+                m.set(m_vUp3[i],1,i);
+            m.set(-(m_vUp3.dotProduct(e)),1,3);
+            
+            for(int i = 0; i < 3; i++)
+                m.set(m_vDirection3[i],2,i);
+            m.set(-(m_vDirection3.dotProduct(e)),2,3);
+
+            return m;
+        }
+    private:
+        void transform(const Core::Matrix4 &mat)
+        {
+            Core::Matrix4 m = mat;
+
+            Core::Vector4 dir = Core::toVector4f(m_vDirection3);
+            dir = m*dir;
+            m_vDirection3 = Core::normalize(Core::toVector3f(dir));
+
+            Core::Vector4 up = Core::toVector4f(m_vUp3);
+            up = m*up;
+            m_vUp3 = Core::normalize(Core::toVector3f(up));
+
+            Core::Vector4 right = Core::toVector4f(m_vRight3);
+            right = m*right;
+            m_vRight3 = Core::normalize(Core::toVector3f(right));
+        }
 
     private:
-        Core::Vector3 m_View3;
-        Core::Vector3 m_XAxis3;
-        Core::Vector3 m_YAxis3;
-        Core::Vector3 m_ZAxis3;
-        Core::Vector3 m_vUp;
+        Core::Vector3 m_vDirection3;
+        Core::Vector3 m_vUp3;
         Core::Vector3 m_vEye3;
-
-        Core::Matrix4 m_CameraMatrix;
+        Core::Vector3 m_vRight3;
+        
+        float m_fSpeed;
 
     }; //end of Camera.
 } //end of namespace CANVAS.

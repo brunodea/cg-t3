@@ -3,6 +3,11 @@
 
 #include <SCV/SCV.h>
 #include "GUI/Canvas/Camera.h"
+#include "Model/Cube.hpp"
+#include "Model/Ground.hpp"
+#include "Model/Sphere.hpp"
+#include "math/Bezier.hpp"
+#include "math/BezierSurface.h"
 
 #include <vector>
 
@@ -19,12 +24,26 @@ namespace GUI
         void onKeyPressed(const scv::KeyEvent &evt);
 
     private:
-        void initCube();
+        void cameraInitialPosition()
+        {
+            Core::Vector3 v = Core::vector3f(0, 0, -1);
+            Core::Vector3 u = Core::vector3f(0, 1, 0);
+            m_Camera.setEye(v);
+            m_Camera.setUp(u);
+            m_Camera.lookAt(m_Camera.getEye(), Core::Vector3(0), m_Camera.getUp());
+        }
+
+        void drawObjects();
+        void init();
 
     private:
         CANVAS::Camera m_Camera;
 
-        std::vector<Core::Vector3> m_CubeVertices;
+        std::vector<Model::Cube> m_Cubes;
+        std::vector<Model::Sphere> m_Spheres;
+
+        Model::Ground m_Ground;
+        math::BezierSurface m_BezierSurface;
 
     }; //end of class Canvas.
 } //end of namespace GUI.

@@ -38,6 +38,50 @@ namespace Core
 
         return res;
     }
+    
+    template<unsigned int M>
+    float determinant(const Matrix<float, M, M> &mat)
+    {
+        float mul = 1;
+        float sum = 0;
+        for(unsigned int i = 0; i < M*M; i++)
+        {
+            if(i % M == 0 && i != 0)
+            {
+                sum += mul;
+                mul = 1;
+            }
+            mul *= mat(i%M,((i%M) + i/M)%M);
+        }
+        mul = 1;
+        for(unsigned int i = 0; i < M*M; i++)
+        {
+            if(i % M == 0 && i != 0)
+            {
+                sum -= mul;
+                mul = 1;
+            }
+            mul *= mat(M-1-(i%M),((i%M) + i/M)%M);
+        }
+
+        return sum;
+    }
+
+    template<unsigned int M>
+    Matrix<float, M, M> invert(const Matrix<float, M, M> &mat)
+    {
+        float det = determinant(mat);
+        Core::Matrix<float, M, M> res = mat;
+        if(det != 0)
+        {
+            res.print();
+            res = Core::transpose(res);
+            res.print();
+            res *= ((float)1.f/det);
+            res.print();
+        }
+        return res;
+    }
 
     template<unsigned int M, unsigned int N>
     Matrix<float, N, M> transpose(const Matrix<float, M, N> &mat)
@@ -47,51 +91,6 @@ namespace Core
             for(int j = 0; j < M; j++)
                 res.set(mat(i,j), j, i);
         return res;
-    }
-
-    inline Matrix4 projection(float fov, float aspect, float znear, float zfar)
-    {
-        Matrix4 m(0);
-        float xmax = znear*tan(fov*3.14159265/360.f);
-        float xmin = -xmax;
-
-        float ymin = xmin/aspect;
-        float ymax = xmax/aspect;
-
-        m.set((2*znear)/(xmax-xmin),0,0);
-        m.set((2*znear)/(ymax-ymin),1,1);
-        m.set(-(zfar+znear)/(zfar-znear),2,2);
-
-        m.set((xmax+xmin)/(xmax-xmin),0,2);
-        m.set((ymax+ymin)/(ymax-ymin),1,2);
-        m.set(-1.f,3,2);
-
-        m.set(-(2*zfar*znear)/(zfar-znear),2,3);
-
-
-        /*float xymax = znear*tan(fov*3.14159265/360.f);
-        float ymin = -xymax;
-        float xmin = -xymax;
-
-        float width = xymax - xmin;
-        float height = xymax - ymin;
-
-        float depth = zfar - znear;
-        float q = -(zfar+znear)/depth;
-        float qn = -2*(zfar-znear)/depth;
-
-        float w = 2*znear/width;
-        w = w/aspect;
-        float h = 2*znear/height;
-
-        m.set(w,0,0);
-        m.set(h,1,1);
-        m.set(q,2,2);
-        m.set(-1,3,2);
-        m.set(qn,3,3);*/
-
-
-        return m;
     }
 
     template<unsigned int M>
@@ -223,6 +222,36 @@ namespace Core
         for(unsigned int i = 0; i < M; i++)
             res[i] = mat(i, 0);
         return res;
+    }
+
+    inline Vector3 vector3f(float x, float y, float z)
+    {
+        Vector<float, 3> res;
+        res[0] = x;
+        res[1] = y;
+        res[2] = z;
+        return res;
+    }
+
+    inline Vector4 vector4f(float x, float y, float z, float w)
+    {
+        Vector<float, 4> res;
+        res[0] = x;
+        res[1] = y;
+        res[2] = z;
+        res[3] = w;
+
+        return res;
+    }
+
+    inline Vector4 toVector4f(const Vector3 &v)
+    {
+        return vector4f(v(0,0),v(1,0),v(2,0),1);
+    }
+
+    inline Vector3 toVector3f(const Vector4 &v)
+    {
+        return vector3f(v(0,0),v(1,0),v(2,0));
     }
 
 } //end of namespace Core.
