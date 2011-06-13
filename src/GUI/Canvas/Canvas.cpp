@@ -10,27 +10,15 @@ Canvas::Canvas(int pos_x, int pos_y, int width, int height)
       m_Cubes(), m_Spheres(), m_Ground(), m_BezierSurface(4,0,0,0)
 {
     init();
+}
 
+void Canvas::init()
+{
     cameraInitialPosition();
     for(int i = 0; i < 15; i++)
         m_Cubes.push_back(Model::Cube());
     for(int i = 0; i < 2; i++)
         m_Spheres.push_back(Model::Sphere());
-}
-
-void Canvas::init()
-{
-    glViewport(0, 0, this->getWidth(), this->getHeight());
-    glMatrixMode(GL_PROJECTION);
-    glLoadIdentity();
-
-    gluPerspective(45.f, (float)this->getWidth()/(float)this->getHeight(), 0.1, 1000);
-
-    glMatrixMode(GL_MODELVIEW);
-    glLoadIdentity();
-    
-    glEnable(GL_DEPTH_TEST);
-    glClearColor(0.7f,0.7f,1.f,1.f);
 }
 
 void Canvas::update()
@@ -39,17 +27,25 @@ void Canvas::update()
 
 void Canvas::render()
 {
-    init();
-    glMatrixMode(GL_MODELVIEW);
+    glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    gluPerspective(45.f, (float)this->getWidth()/(float)this->getHeight(), 0.1, 1000);
+
+    glMatrixMode(GL_MODELVIEW);
+    glLoadIdentity();  
     
+    glEnable(GL_DEPTH_TEST);
+
+    glClearColor(0.f,0.f,0.f,1.f);
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
     Util::MODELVIEW->loadIdentity();
     drawObjects();
 }
 
 void Canvas::drawObjects()
 {
+    glColor4f(0.18f, 0.31f, 0.31f, 1.f);
     Util::MODELVIEW->pushMatrix();
         Util::MODELVIEW->scale(150.f,1.f,150.f);
         Util::MODELVIEW->transform(m_Camera.transMatrix());
@@ -62,16 +58,15 @@ void Canvas::drawObjects()
         Util::MODELVIEW->transform(m_Camera.transMatrix());
         //glColor4f(1.f,0.f,0.f,1.f);
         //m_BezierSurface.getBezier().drawControlPointsInLines();
-        //glColor4f(0.f,1.f,0.f,1.f);
+        glColor4f(0.f,1.f,0.f,1.f);
         
         //m_BezierSurface.draw(Util::TEXTURE.getTextureID(Util::TextureID::TEX_GRASS), math::BezierSurface::DRAW_QUADS);
         m_BezierSurface.drawWireframe();
     Util::MODELVIEW->popMatrix();
 
-
+    glColor4f(0.82f, 0.41f, 0.11f, 1.f);
     Util::MODELVIEW->pushMatrix();
         Util::MODELVIEW->translate(0,5,0);
-
         for(unsigned int i = 0; i < m_Spheres.size(); i++)
         {
             float x = 20*cos((float)i);
@@ -85,9 +80,9 @@ void Canvas::drawObjects()
         }
         
     Util::MODELVIEW->popMatrix();
-
+    
+    glColor4f(0.f,0.f,1.f,1.f);
     Util::MODELVIEW->pushMatrix();
-        Util::MODELVIEW->translate(0.f, -1.f, -15.f);
         for(unsigned int i = 0; i < m_Cubes.size(); i++)
         {
             float x = i*cos((float)i);
@@ -137,5 +132,6 @@ void Canvas::onKeyPressed(const scv::KeyEvent &evt)
 
     if(evt.getKeyCode() == '1')
         cameraInitialPosition();
+    Util::MODELVIEW->transform(m_Camera.transMatrix());
 }
 
