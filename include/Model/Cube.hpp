@@ -15,7 +15,6 @@ namespace Model
         Cube() { init(); }
         void draw()
         {
-            glColor4f(1.f,1.f,1.f,1.f);
             glBegin(GL_LINE_STRIP);
             
                 for(unsigned int i = 0; i < m_CubeVertices.size(); i += 4)

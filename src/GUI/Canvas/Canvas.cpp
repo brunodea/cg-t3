@@ -7,7 +7,7 @@ using namespace GUI;
 
 Canvas::Canvas(int pos_x, int pos_y, int width, int height)
     : scv::Canvas(scv::Point(pos_x, pos_y), width, height), m_Camera(),
-      m_Cubes(), m_Spheres(), m_Ground(), m_BezierSurface(4,0,0,0)
+      m_Cubes(), m_Spheres(), m_Ground(), m_BezierSurface(13,0,0,0)
 {
     init();
 }
@@ -45,25 +45,25 @@ void Canvas::render()
 
 void Canvas::drawObjects()
 {
-    glColor4f(0.18f, 0.31f, 0.31f, 1.f);
-    Util::MODELVIEW->pushMatrix();
-        Util::MODELVIEW->scale(150.f,1.f,150.f);
-        Util::MODELVIEW->transform(m_Camera.transMatrix());
-        m_Ground.draw();
-    Util::MODELVIEW->popMatrix();
+    //Util::MODELVIEW->pushMatrix();
+    //    glColor4f(0.18f, 0.31f, 0.31f, 1.f);
+    //    Util::MODELVIEW->scale(150.f,1.f,150.f);
+    //    //Util::MODELVIEW->transform(m_Camera.transMatrix());
+    //    m_Ground.draw();
+    //Util::MODELVIEW->popMatrix();
 
     Util::MODELVIEW->pushMatrix();
-        Util::MODELVIEW->scale(10.f,10.f,10.f);
-        Util::MODELVIEW->translate(-10,-100,-10);
-        Util::MODELVIEW->transform(m_Camera.transMatrix());
+        Util::MODELVIEW->scale(40.f,1.f,40.f);
+        //Util::MODELVIEW->translate(0,-10,0);
+        //Util::MODELVIEW->transform(m_Camera.transMatrix());
         //glColor4f(1.f,0.f,0.f,1.f);
         //m_BezierSurface.getBezier().drawControlPointsInLines();
-        glColor4f(0.f,1.f,0.f,1.f);
+        glColor4f(1.f,0.f,0.f,1.f);
         
         //m_BezierSurface.draw(Util::TEXTURE.getTextureID(Util::TextureID::TEX_GRASS), math::BezierSurface::DRAW_QUADS);
         m_BezierSurface.drawWireframe();
     Util::MODELVIEW->popMatrix();
-
+    
     glColor4f(0.82f, 0.41f, 0.11f, 1.f);
     Util::MODELVIEW->pushMatrix();
         Util::MODELVIEW->translate(0,5,0);

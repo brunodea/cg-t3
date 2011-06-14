@@ -14,8 +14,6 @@ namespace Model
 
         void draw()
         {        
-            glColor4f(1.f,1.f,1.f,1.f);
-
             glBegin(GL_QUADS);
         
                 int r = 50;

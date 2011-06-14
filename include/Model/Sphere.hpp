@@ -16,7 +16,6 @@ namespace Model
 
         void draw()
         {
-            glColor4f(0.f,0.f,1.f,1.f);
             glBegin(GL_TRIANGLE_FAN);
                 for(unsigned int i = 0; i < m_vVertices.size(); i += 3)
                 {
