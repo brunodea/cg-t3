@@ -7,7 +7,7 @@ using namespace GUI;
 
 Canvas::Canvas(int pos_x, int pos_y, int width, int height)
     : scv::Canvas(scv::Point(pos_x, pos_y), width, height), m_Camera(),
-      m_Cubes(), m_Spheres(), m_Ground(), m_BezierSurface(13,0,0,0)
+      m_Cubes(), m_Spheres(), m_BezierSurface(13)
 {
     init();
 }
@@ -29,7 +29,6 @@ void Canvas::render()
 {
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
-    /*gluPerspective(45.f, (float)this->getWidth()/(float)this->getHeight(), 0.1, 1000);*/
 
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();  
@@ -45,13 +44,6 @@ void Canvas::render()
 
 void Canvas::drawObjects()
 {
-    Util::MODELVIEW->pushMatrix();
-        glColor4f(0.18f, 0.31f, 0.31f, 1.f);
-        Util::MODELVIEW->scale(100.f,1.f,100.f);
-        Util::MODELVIEW->transform(m_Camera.transMatrix());
-        m_Ground.draw();
-    Util::MODELVIEW->popMatrix();
-
     Util::MODELVIEW->pushMatrix();
         Util::MODELVIEW->scale(10.f,10.f,10.f);
         Util::MODELVIEW->translate(0,40,0);

@@ -4,7 +4,6 @@
 #include <SCV/SCV.h>
 #include "GUI/Canvas/Camera.h"
 #include "Model/Cube.hpp"
-#include "Model/Ground.hpp"
 #include "Model/Sphere.hpp"
 #include "math/Bezier.hpp"
 #include "math/BezierSurface.h"
@@ -42,7 +41,6 @@ namespace GUI
         std::vector<Model::Cube> m_Cubes;
         std::vector<Model::Sphere> m_Spheres;
 
-        Model::Ground m_Ground;
         math::BezierSurface m_BezierSurface;
 
     }; //end of class Canvas.

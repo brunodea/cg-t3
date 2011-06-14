@@ -66,6 +66,7 @@
   <ItemGroup>
     <ClCompile Include="..\src\GUI\Canvas\Camera.cpp" />
     <ClCompile Include="..\src\GUI\Canvas\Canvas.cpp" />
+    <ClCompile Include="..\src\GUI\Canvas\Projection.cpp" />
     <ClCompile Include="..\src\GUI\MainWindow.cpp" />
     <ClCompile Include="..\src\main.cpp" />
     <ClCompile Include="..\src\Util\ModelViewMatrixStack.cpp" />
@@ -76,7 +77,7 @@
     <ClInclude Include="..\include\Core\Vector.hpp" />
     <ClInclude Include="..\include\GUI\Canvas\Camera.h" />
     <ClInclude Include="..\include\GUI\Canvas\Canvas.h" />
-    <ClInclude Include="..\include\GUI\Canvas\projection_functions.hpp" />
+    <ClInclude Include="..\include\GUI\Canvas\Projection.h" />
     <ClInclude Include="..\include\GUI\MainWindow.h" />
     <ClInclude Include="..\include\GUI\Sidebar\Sidebar.h" />
     <ClInclude Include="..\include\macros.h" />
@@ -84,7 +85,6 @@
     <ClInclude Include="..\include\math\BezierSurface.h" />
     <ClInclude Include="..\include\math\math_aux.hpp" />
     <ClInclude Include="..\include\Model\Cube.hpp" />
-    <ClInclude Include="..\include\Model\Ground.hpp" />
     <ClInclude Include="..\include\Model\Sphere.hpp" />
     <ClInclude Include="..\include\Util\ModelViewMatrixStack.h" />
   </ItemGroup>

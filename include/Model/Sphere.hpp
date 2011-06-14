@@ -26,26 +26,14 @@ namespace Model
                     v = Util::MODELVIEW->getTop()*Core::toVector4f(m_vVertices.at(i));
                     v2 = Util::MODELVIEW->getTop()*Core::toVector4f(m_vVertices.at(i+1));
                     v3 = Util::MODELVIEW->getTop()*Core::toVector4f(m_vVertices.at(i+2));
-
-                    Core::Vector3 vet1 = Core::toVector3f(v2-v);
-                    Core::Vector3 vet2 = Core::toVector3f(v3-v);
-
-                    //Core::Vector3 normal = Core::normalize(vet1.crossProduct(vet2));
-                    //glNormal3f(normal[0],normal[1],normal[2]);
-                    Core::Vector4 vec;
-                    vec = PERSPECTIVE*v;
                     
-                    v = Core::vector4f(vec[0]/vec[2],vec[1]/vec[2],1,0);
+                    Core::Vector2 p = PROJECTION->project(v);
+                    Core::Vector2 p2 = PROJECTION->project(v2);
+                    Core::Vector2 p3 = PROJECTION->project(v3);
                     
-                    vec = PERSPECTIVE*v2;
-                    v2 = Core::vector4f(vec[0]/vec[2],vec[1]/vec[2],1,0);
-                    
-                    vec = PERSPECTIVE*v3;
-                    v3 = Core::vector4f(vec[0]/vec[2],vec[1]/vec[2],1,0);
-                    
-                    glVertex2f(v[0], v[1]);
-                    glVertex2f(v2[0], v2[1]);
-                    glVertex2f(v3[0], v3[1]);
+                    glVertex2f(p[0], p[1]);
+                    glVertex2f(p2[0], p2[1]);
+                    glVertex2f(p3[0], p3[1]);
                 }
             glEnd();
         }

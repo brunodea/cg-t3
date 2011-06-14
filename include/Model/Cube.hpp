@@ -6,7 +6,9 @@
 #include "Core/matrix_functions.hpp"
 #include "macros.h"
 #include "Util/ModelViewMatrixStack.h"
-#include "GUI/Canvas/projection_functions.hpp"
+#include "GUI/Canvas/Projection.h"
+
+using namespace CANVAS;
 
 namespace Model
 {
@@ -16,46 +18,74 @@ namespace Model
         Cube() { init(); }
         void draw()
         {
-            glBegin(GL_LINE_STRIP);
+            glBegin(GL_LINES);
             
-                for(unsigned int i = 0; i < m_CubeVertices.size(); i += 4)
-                {
-                    Core::Vector4 v;
-                    Core::Vector4 v2;
-                    Core::Vector4 v3;
-                    Core::Vector4 v4;
+                Core::Vector4 v;
+                Core::Vector4 v2;
+                Core::Vector4 v3;
+                Core::Vector4 v4;
+
+                Core::Vector4 v5;
+                Core::Vector4 v6;
+                Core::Vector4 v7;
+                Core::Vector4 v8;
                 
-                    v = Util::MODELVIEW->getTop()*Core::toVector4f(m_CubeVertices.at(i));
-                    v2 = Util::MODELVIEW->getTop()*Core::toVector4f(m_CubeVertices.at(i+1));
-                    v3 = Util::MODELVIEW->getTop()*Core::toVector4f(m_CubeVertices.at(i+2));
-                    v4 = Util::MODELVIEW->getTop()*Core::toVector4f(m_CubeVertices.at(i+3));
+                v = Util::MODELVIEW->getTop()*Core::toVector4f(m_CubeVertices.at(0));
+                v2 = Util::MODELVIEW->getTop()*Core::toVector4f(m_CubeVertices.at(1));
+                v3 = Util::MODELVIEW->getTop()*Core::toVector4f(m_CubeVertices.at(2));
+                v4 = Util::MODELVIEW->getTop()*Core::toVector4f(m_CubeVertices.at(3));
+                
+                v5 = Util::MODELVIEW->getTop()*Core::toVector4f(m_CubeVertices.at(4));
+                v6 = Util::MODELVIEW->getTop()*Core::toVector4f(m_CubeVertices.at(5));
+                v7 = Util::MODELVIEW->getTop()*Core::toVector4f(m_CubeVertices.at(6));
+                v8 = Util::MODELVIEW->getTop()*Core::toVector4f(m_CubeVertices.at(7));
 
-                    Core::Vector4 vec;
-                    vec = PERSPECTIVE*v;
-                    
-                    v = Core::vector4f(vec[0]/vec[2],vec[1]/vec[2],1,0);
-                    
-                    vec = PERSPECTIVE*v2;
-                    v2 = Core::vector4f(vec[0]/vec[2],vec[1]/vec[2],1,0);
-                    
-                    vec = PERSPECTIVE*v3;
-                    v3 = Core::vector4f(vec[0]/vec[2],vec[1]/vec[2],1,0);
+                Core::Vector2 p = PROJECTION->project(v);
+                Core::Vector2 p2 = PROJECTION->project(v2);
+                Core::Vector2 p3 = PROJECTION->project(v3);
+                Core::Vector2 p4 = PROJECTION->project(v4);
+                
+                Core::Vector2 p5 = PROJECTION->project(v5);
+                Core::Vector2 p6 = PROJECTION->project(v6);
+                Core::Vector2 p7 = PROJECTION->project(v7);
+                Core::Vector2 p8 = PROJECTION->project(v8);
 
-                    vec = PERSPECTIVE*v4;
-                    v4 = Core::vector4f(vec[0]/vec[2],vec[1]/vec[2],1,0);
+                glVertex2f(p[0], p[1]);
+                glVertex2f(p2[0], p2[1]);
 
+                glVertex2f(p2[0], p2[1]);
+                glVertex2f(p3[0], p3[1]);
+                
+                glVertex2f(p3[0], p3[1]);
+                glVertex2f(p4[0], p4[1]);
+                
+                glVertex2f(p4[0], p4[1]);
+                glVertex2f(p[0], p[1]);
 
-                    //Core::Vector3 vet1 = Core::toVector3f(v2-v);
-                    //Core::Vector3 vet2 = Core::toVector3f(v3-v);
-
-                    //Core::Vector3 normal = Core::normalize(vet1.crossProduct(vet2));
-                    //glNormal3f(normal[0],normal[1],normal[2]);
-
-                    glVertex2f(v[0], v[1]);
-                    glVertex2f(v2[0], v2[1]);
-                    glVertex2f(v3[0], v3[1]);
-                    glVertex2f(v4[0], v4[1]);
-                }
+                
+                glVertex2f(p[0], p[1]);
+                glVertex2f(p5[0], p5[1]);
+                
+                glVertex2f(p5[0], p5[1]);
+                glVertex2f(p6[0], p6[1]);
+                
+                glVertex2f(p6[0], p6[1]);
+                glVertex2f(p2[0], p2[1]);
+                
+                glVertex2f(p6[0], p6[1]);
+                glVertex2f(p7[0], p7[1]);
+                
+                glVertex2f(p7[0], p7[1]);
+                glVertex2f(p3[0], p3[1]);
+                
+                glVertex2f(p7[0], p7[1]);
+                glVertex2f(p8[0], p8[1]);
+                
+                glVertex2f(p8[0], p8[1]);
+                glVertex2f(p4[0], p4[1]);
+                
+                glVertex2f(p8[0], p8[1]);
+                glVertex2f(p5[0], p5[1]);
 
             glEnd();
         }
@@ -66,64 +96,24 @@ namespace Model
             float len = 1;
             Core::Vector3 v1 = Core::vector3f(-len,-len,-len);
             Core::Vector3 v2 = Core::vector3f(-len,-len,len);
-            Core::Vector3 v3 = Core::vector3f(-len,len,len);
-            Core::Vector3 v4 = Core::vector3f(-len,len,-len);
+            Core::Vector3 v3 = Core::vector3f(len,-len,len);
+            Core::Vector3 v4 = Core::vector3f(len,-len,-len);
 
-            Core::Vector3 v5 = Core::vector3f(len,len,len);
-            Core::Vector3 v6 = Core::vector3f(len,-len,len);
-            Core::Vector3 v7 = Core::vector3f(len,-len,-len);
+            Core::Vector3 v5 = Core::vector3f(-len,len,-len);
+            Core::Vector3 v6 = Core::vector3f(-len,len,len);
+            Core::Vector3 v7 = Core::vector3f(len,len,len);
             Core::Vector3 v8 = Core::vector3f(len,len,-len);
-
-            Core::Vector3 v9 = Core::vector3f(-len,-len,-len);
-            Core::Vector3 v10 = Core::vector3f(len,-len,-len);
-            Core::Vector3 v11 = Core::vector3f(len,-len,len);
-            Core::Vector3 v12 = Core::vector3f(-len,-len,len);
-
-            Core::Vector3 v13 = Core::vector3f(len,len,len);
-            Core::Vector3 v14 = Core::vector3f(len,len,-len);
-            Core::Vector3 v15 = Core::vector3f(-len,len,-len);
-            Core::Vector3 v16 = Core::vector3f(-len,len,len);
-
-            Core::Vector3 v17 = Core::vector3f(-len,-len,-len);
-            Core::Vector3 v18 = Core::vector3f(-len,len,-len);
-            Core::Vector3 v19 = Core::vector3f(len,len,-len);
-            Core::Vector3 v20 = Core::vector3f(len,-len,-len);
-
-            Core::Vector3 v21 = Core::vector3f(len,len,len);
-            Core::Vector3 v22 = Core::vector3f(-len,len,len);
-            Core::Vector3 v23 = Core::vector3f(-len,-len,len);
-            Core::Vector3 v24 = Core::vector3f(len,-len,len);
 
             //top face
             m_CubeVertices.push_back(v1);
             m_CubeVertices.push_back(v2);
             m_CubeVertices.push_back(v3);
             m_CubeVertices.push_back(v4);
-                    /*      This is the front face*/
+
             m_CubeVertices.push_back(v5);
             m_CubeVertices.push_back(v6);
             m_CubeVertices.push_back(v7);
             m_CubeVertices.push_back(v8);
-                    /*      This is the right face*/
-            m_CubeVertices.push_back(v9);
-            m_CubeVertices.push_back(v10);
-            m_CubeVertices.push_back(v11);
-            m_CubeVertices.push_back(v12);
-                    /*      This is the left face*/
-            m_CubeVertices.push_back(v13);
-            m_CubeVertices.push_back(v14);
-            m_CubeVertices.push_back(v15);
-            m_CubeVertices.push_back(v16);
-                    /*      This is the bottom face*/
-            m_CubeVertices.push_back(v17);
-            m_CubeVertices.push_back(v18);
-            m_CubeVertices.push_back(v19);
-            m_CubeVertices.push_back(v20);
-                    /*      This is the back face*/
-            m_CubeVertices.push_back(v21);
-            m_CubeVertices.push_back(v22);
-            m_CubeVertices.push_back(v23);
-            m_CubeVertices.push_back(v24);
         }
     private:
         std::vector<Core::Vector3> m_CubeVertices;

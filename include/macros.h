@@ -13,6 +13,7 @@
 #define CANVAS_WIDTH (WINDOW_WIDTH - SIDEBAR_WIDTH)
 #define CANVAS_HEIGHT WINDOW_HEIGHT
 
-#define PERSPECTIVE PROJECTION::perpective(45.f, (float)CANVAS_WIDTH/(float)CANVAS_HEIGHT, 0.1, 1000)
+//#define PERSPECTIVE PROJECTION::perpective(45.f, (float)CANVAS_WIDTH/(float)CANVAS_HEIGHT, 0.1, 1000)
+#define PROJECTION Projection::instance()
 
 #endif

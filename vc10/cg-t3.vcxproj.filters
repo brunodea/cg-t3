@@ -60,6 +60,9 @@
     <ClCompile Include="..\src\Util\ModelViewMatrixStack.cpp">
       <Filter>Source Files\Util</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\GUI\Canvas\Projection.cpp">
+      <Filter>Source Files\GUI\Canvas</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\include\macros.h">
@@ -101,13 +104,10 @@
     <ClInclude Include="..\include\Model\Cube.hpp">
       <Filter>Header Files\GUI\Canvas\Model</Filter>
     </ClInclude>
-    <ClInclude Include="..\include\Model\Ground.hpp">
-      <Filter>Header Files\GUI\Canvas\Model</Filter>
-    </ClInclude>
     <ClInclude Include="..\include\Model\Sphere.hpp">
       <Filter>Header Files\GUI\Canvas\Model</Filter>
     </ClInclude>
-    <ClInclude Include="..\include\GUI\Canvas\projection_functions.hpp">
+    <ClInclude Include="..\include\GUI\Canvas\Projection.h">
       <Filter>Header Files\GUI\Canvas</Filter>
     </ClInclude>
   </ItemGroup>
