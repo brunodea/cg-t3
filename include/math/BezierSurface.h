@@ -58,25 +58,43 @@ namespace math
                         Core::Vector4 v4 = Core::toVector4f(m_vPatch.at((i*m_PatchLen)+j+1));
                         v4 = Util::MODELVIEW->getTop()*v4;
                         
-                        glVertex3f(v[0], v[1], v[2]);
-                        glVertex3f(v2[0], v2[1], v2[2]);
-                        glVertex3f(v[0], v[1], v[2]);
-                        glVertex3f(v4[0], v4[1], v4[2]);
+                        Core::Vector4 vec;
+                        vec = PERSPECTIVE*v;
+                    
+                        v = Core::vector4f(vec[0]/vec[2],vec[1]/vec[2],1,0);
+                    
+                        vec = PERSPECTIVE*v2;
+                        v2 = Core::vector4f(vec[0]/vec[2],vec[1]/vec[2],1,0);
+
+                        vec = PERSPECTIVE*v4;
+                        v4 = Core::vector4f(vec[0]/vec[2],vec[1]/vec[2],1,0);
+
+                        glVertex2f(v[0], v[1]);
+                        glVertex2f(v2[0], v2[1]);
+                        glVertex2f(v[0], v[1]);
+                        glVertex2f(v4[0], v4[1]);
 
                         if(i == m_PatchLen-2)
                         {
                             Core::Vector4 v3 = Core::toVector4f(m_vPatch.at(((i+1)*m_PatchLen)+j+1));
                             v3 = Util::MODELVIEW->getTop()*v3;
+                    
+                            vec = PERSPECTIVE*v3;
+                            v3 = Core::vector4f(vec[0]/vec[2],vec[1]/vec[2],1,0);
                             
-                            glVertex3f(v2[0], v2[1], v2[2]);
-                            glVertex3f(v3[0], v3[1], v3[2]);
+                            glVertex2f(v2[0], v2[1]);
+                            glVertex2f(v3[0], v3[1]);
                         }
                         if(j == m_PatchLen-2)
                         {
                             Core::Vector4 v3 = Core::toVector4f(m_vPatch.at(((i+1)*m_PatchLen)+j+1));
                             v3 = Util::MODELVIEW->getTop()*v3;
-                            glVertex3f(v4[0], v4[1], v4[2]);
-                            glVertex3f(v3[0], v3[1], v3[2]);
+
+                            vec = PERSPECTIVE*v3;
+                            v3 = Core::vector4f(vec[0]/vec[2],vec[1]/vec[2],1,0);
+
+                            glVertex2f(v4[0], v4[1]);
+                            glVertex2f(v3[0], v3[1]);
                         }
                     }
                 }
@@ -116,10 +134,31 @@ namespace math
             m_PatchLen = (int)sqrt((float)m_vPatch.size());
         }
 
+        void randomControlPoints()
+        {
+            srand((unsigned int)time(0));
+            for(unsigned int i = 0; i < m_iDegree; i++)
+            {
+                for(unsigned int j = 0; j < m_iDegree; j++)
+                    m_Bezier.adjustControlPointY((rand()%10)*pow(-1.f,rand()%2),i,j);
+            }
+            updatePatches(0.0415f); //0.0415f melhor precisao.
+        }
+
+        void flatSurface()
+        {
+            for(unsigned int i = 0; i < m_iDegree; i++)
+            {
+                for(unsigned int j = 0; j < m_iDegree; j++)
+                    m_Bezier.adjustControlPointY(0,i,j);
+            }
+            updatePatches(0.0415f); //0.0415f melhor precisao.
+        }
+
         Bezier getBezier() { return m_Bezier; }
 
     private:
-        void init(float start_x, float start_y, float start_z)
+        void init()
         {
             srand((unsigned int)time(0));
             for(unsigned int i = 0; i < m_iDegree; i++)
@@ -127,14 +166,13 @@ namespace math
                 std::vector<Core::Vector3> vs;
                 for(unsigned int j = 0; j < m_iDegree; j++)
                 {
-                    float x = i + start_x;
+                    float x = i;
                     float y = rand()%10*pow(-1.f,(rand()%2)+1);
-                    float z = j + start_z;
+                    float z = j;
                     vs.push_back(Core::vector3f(x,y,z));
                 }
                 m_Bezier.addControlPoints(vs);
             }
-
             updatePatches(0.0415f); //0.0415f melhor precisao.
         }
 

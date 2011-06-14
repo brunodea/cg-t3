@@ -29,7 +29,7 @@ void Canvas::render()
 {
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
-    gluPerspective(45.f, (float)this->getWidth()/(float)this->getHeight(), 0.1, 1000);
+    /*gluPerspective(45.f, (float)this->getWidth()/(float)this->getHeight(), 0.1, 1000);*/
 
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();  

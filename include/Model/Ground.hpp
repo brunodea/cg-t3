@@ -35,11 +35,24 @@ namespace Model
                     //Core::Vector3 normal = Core::normalize(vet1.crossProduct(vet2));
 
                     //glNormal3f(normal[0],normal[1],normal[2]);
-                
-                    glVertex3f(v[0], v[1], v[2]);
-                    glVertex3f(v2[0], v2[1], v2[2]);
-                    glVertex3f(v3[0], v3[1], v3[2]);
-                    glVertex3f(v4[0], v4[1], v4[2]);
+                    Core::Vector4 vec;
+                    vec = PERSPECTIVE*v;
+                    
+                    v = Core::vector4f(vec[0]/vec[2],vec[1]/vec[2],1,0);
+                    
+                    vec = PERSPECTIVE*v2;
+                    v2 = Core::vector4f(vec[0]/vec[2],vec[1]/vec[2],1,0);
+                    
+                    vec = PERSPECTIVE*v3;
+                    v3 = Core::vector4f(vec[0]/vec[2],vec[1]/vec[2],1,0);
+
+                    vec = PERSPECTIVE*v4;
+                    v4 = Core::vector4f(vec[0]/vec[2],vec[1]/vec[2],1,0);
+                    
+                    glVertex2f(v[0], v[1]);
+                    glVertex2f(v2[0], v2[1]);
+                    glVertex2f(v3[0], v3[1]);
+                    glVertex2f(v4[0], v4[1]);
                 }
 
             glEnd();

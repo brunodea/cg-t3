@@ -6,6 +6,7 @@
 #include "Core/matrix_functions.hpp"
 #include "macros.h"
 #include "Util/ModelViewMatrixStack.h"
+#include "GUI/Canvas/projection_functions.hpp"
 
 namespace Model
 {
@@ -29,16 +30,31 @@ namespace Model
                     v3 = Util::MODELVIEW->getTop()*Core::toVector4f(m_CubeVertices.at(i+2));
                     v4 = Util::MODELVIEW->getTop()*Core::toVector4f(m_CubeVertices.at(i+3));
 
-                    Core::Vector3 vet1 = Core::toVector3f(v2-v);
-                    Core::Vector3 vet2 = Core::toVector3f(v3-v);
+                    Core::Vector4 vec;
+                    vec = PERSPECTIVE*v;
+                    
+                    v = Core::vector4f(vec[0]/vec[2],vec[1]/vec[2],1,0);
+                    
+                    vec = PERSPECTIVE*v2;
+                    v2 = Core::vector4f(vec[0]/vec[2],vec[1]/vec[2],1,0);
+                    
+                    vec = PERSPECTIVE*v3;
+                    v3 = Core::vector4f(vec[0]/vec[2],vec[1]/vec[2],1,0);
+
+                    vec = PERSPECTIVE*v4;
+                    v4 = Core::vector4f(vec[0]/vec[2],vec[1]/vec[2],1,0);
+
+
+                    //Core::Vector3 vet1 = Core::toVector3f(v2-v);
+                    //Core::Vector3 vet2 = Core::toVector3f(v3-v);
 
                     //Core::Vector3 normal = Core::normalize(vet1.crossProduct(vet2));
                     //glNormal3f(normal[0],normal[1],normal[2]);
 
-                    glVertex3f(v[0], v[1], v[2]);
-                    glVertex3f(v2[0], v2[1], v2[2]);
-                    glVertex3f(v3[0], v3[1], v3[2]);
-                    glVertex3f(v4[0], v4[1], v4[2]);
+                    glVertex2f(v[0], v[1]);
+                    glVertex2f(v2[0], v2[1]);
+                    glVertex2f(v3[0], v3[1]);
+                    glVertex2f(v4[0], v4[1]);
                 }
 
             glEnd();

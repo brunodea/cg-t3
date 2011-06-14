@@ -107,5 +107,8 @@
     <ClInclude Include="..\include\Model\Sphere.hpp">
       <Filter>Header Files\GUI\Canvas\Model</Filter>
     </ClInclude>
+    <ClInclude Include="..\include\GUI\Canvas\projection_functions.hpp">
+      <Filter>Header Files\GUI\Canvas</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
