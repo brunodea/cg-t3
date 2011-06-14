@@ -7,8 +7,10 @@ using namespace GUI;
 
 Canvas::Canvas(int pos_x, int pos_y, int width, int height)
     : scv::Canvas(scv::Point(pos_x, pos_y), width, height), m_Camera(),
-      m_Cubes(), m_Spheres(), m_BezierSurface(13)
+      m_Cubes(), m_Spheres(), m_BezierSurface(13), m_BezierFlat(4)
 {
+    m_BezierFlat.flatSurface();
+    m_BezierFlat.adjustControlPoint(2,0,0);
     init();
 }
 
@@ -46,12 +48,20 @@ void Canvas::drawObjects()
 {
     Util::MODELVIEW->pushMatrix();
         Util::MODELVIEW->scale(10.f,10.f,10.f);
-        Util::MODELVIEW->translate(0,40,0);
+        Util::MODELVIEW->translate(40,40,40);
         Util::MODELVIEW->transform(m_Camera.transMatrix());
         //glColor4f(1.f,0.f,0.f,1.f);
         //m_BezierSurface.getBezier().drawControlPointsInLines();
         glColor4f(0.f,1.f,0.f,1.f);
         m_BezierSurface.drawWireframe();
+    Util::MODELVIEW->popMatrix();
+
+    Util::MODELVIEW->pushMatrix();
+        Util::MODELVIEW->scale(100.f,100.f,100.f);
+        Util::MODELVIEW->translate(-50,0,-50);
+        Util::MODELVIEW->transform(m_Camera.transMatrix());
+        glColor4f(1.f,1.f,1.f,1.f);
+        m_BezierFlat.drawWireframe();
     Util::MODELVIEW->popMatrix();
     
     glColor4f(0.82f, 0.41f, 0.11f, 1.f);

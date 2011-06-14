@@ -25,7 +25,7 @@ namespace GUI
     private:
         void cameraInitialPosition()
         {
-            Core::Vector3 v = Core::vector3f(0, 0, -1);
+            Core::Vector3 v = Core::vector3f(0, 0, -40);
             Core::Vector3 u = Core::vector3f(0, 1, 0);
             m_Camera.setEye(v);
             m_Camera.setUp(u);
@@ -42,6 +42,7 @@ namespace GUI
         std::vector<Model::Sphere> m_Spheres;
 
         math::BezierSurface m_BezierSurface;
+        math::BezierSurface m_BezierFlat;
 
     }; //end of class Canvas.
 } //end of namespace GUI.

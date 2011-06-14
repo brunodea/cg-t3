@@ -47,7 +47,7 @@ namespace CANVAS
     private:
         Projection() : m_Matrix(0)
         {
-            setOrtho();
+            setPerspective();
         }
 
         void setPerspective()
@@ -72,7 +72,7 @@ namespace CANVAS
             float top = -10.f;
             float bottom = 10.f;
             float perto = -10.f;
-            float longe = 10.f;
+            float longe = 40.f;
 
             float tx = 1;//-1.f*((float)(right+left)/(right-left));
             float ty = 1;//-1.f*((float)(top+bottom)/(top-bottom));
@@ -106,6 +106,7 @@ namespace CANVAS
             Core::Vector2 v2;
             v2[0] = (float)res[0]/res[2];
             v2[1] = (float)res[1]/res[2];
+
             return v2;
         }
 
