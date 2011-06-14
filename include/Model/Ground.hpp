@@ -14,7 +14,7 @@ namespace Model
 
         void draw()
         {        
-            glBegin(GL_QUADS);
+            glBegin(GL_LINES);
         
                 int r = 50;
                 for(unsigned int i = 0; i < m_vVertices.size(); i += 4)

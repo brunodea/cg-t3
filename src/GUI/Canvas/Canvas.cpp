@@ -45,22 +45,20 @@ void Canvas::render()
 
 void Canvas::drawObjects()
 {
-    //Util::MODELVIEW->pushMatrix();
-    //    glColor4f(0.18f, 0.31f, 0.31f, 1.f);
-    //    Util::MODELVIEW->scale(150.f,1.f,150.f);
-    //    //Util::MODELVIEW->transform(m_Camera.transMatrix());
-    //    m_Ground.draw();
-    //Util::MODELVIEW->popMatrix();
+    Util::MODELVIEW->pushMatrix();
+        glColor4f(0.18f, 0.31f, 0.31f, 1.f);
+        Util::MODELVIEW->scale(100.f,1.f,100.f);
+        Util::MODELVIEW->transform(m_Camera.transMatrix());
+        m_Ground.draw();
+    Util::MODELVIEW->popMatrix();
 
     Util::MODELVIEW->pushMatrix();
-        Util::MODELVIEW->scale(40.f,1.f,40.f);
-        //Util::MODELVIEW->translate(0,-10,0);
-        //Util::MODELVIEW->transform(m_Camera.transMatrix());
+        Util::MODELVIEW->scale(10.f,10.f,10.f);
+        Util::MODELVIEW->translate(0,40,0);
+        Util::MODELVIEW->transform(m_Camera.transMatrix());
         //glColor4f(1.f,0.f,0.f,1.f);
         //m_BezierSurface.getBezier().drawControlPointsInLines();
-        glColor4f(1.f,0.f,0.f,1.f);
-        
-        //m_BezierSurface.draw(Util::TEXTURE.getTextureID(Util::TextureID::TEX_GRASS), math::BezierSurface::DRAW_QUADS);
+        glColor4f(0.f,1.f,0.f,1.f);
         m_BezierSurface.drawWireframe();
     Util::MODELVIEW->popMatrix();
     

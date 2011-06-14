@@ -102,6 +102,7 @@ namespace math
 
     private:
         std::vector<std::vector<Core::Vector3>> m_vControlPoints;
+
     }; //end of class Bezier.
 } //end of namespace math.
 
