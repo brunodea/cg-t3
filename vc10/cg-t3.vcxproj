@@ -79,6 +79,7 @@
     <ClInclude Include="..\include\GUI\Canvas\Canvas.h" />
     <ClInclude Include="..\include\GUI\Canvas\Projection.h" />
     <ClInclude Include="..\include\GUI\MainWindow.h" />
+    <ClInclude Include="..\include\GUI\Sidebar\ProjectionRadioButton.h" />
     <ClInclude Include="..\include\GUI\Sidebar\Sidebar.h" />
     <ClInclude Include="..\include\macros.h" />
     <ClInclude Include="..\include\math\Bezier.hpp" />

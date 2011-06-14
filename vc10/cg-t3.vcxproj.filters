@@ -110,5 +110,8 @@
     <ClInclude Include="..\include\GUI\Canvas\Projection.h">
       <Filter>Header Files\GUI\Canvas</Filter>
     </ClInclude>
+    <ClInclude Include="..\include\GUI\Sidebar\ProjectionRadioButton.h">
+      <Filter>Header Files\GUI\Sidebar</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

@@ -10,7 +10,7 @@ Canvas::Canvas(int pos_x, int pos_y, int width, int height)
       m_Cubes(), m_Spheres(), m_BezierSurface(13), m_BezierFlat(4)
 {
     m_BezierFlat.flatSurface();
-    m_BezierFlat.adjustControlPoint(2,0,0);
+    m_BezierFlat.adjustControlPoint(2,3,3);
     init();
 }
 

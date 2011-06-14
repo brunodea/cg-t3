@@ -72,11 +72,11 @@ namespace CANVAS
             float top = -10.f;
             float bottom = 10.f;
             float perto = -10.f;
-            float longe = 40.f;
+            float longe = 10.f;
 
-            float tx = 1;//-1.f*((float)(right+left)/(right-left));
-            float ty = 1;//-1.f*((float)(top+bottom)/(top-bottom));
-            float tz = 1;//-1.f*((float)(far+near)/(far-near));
+            float tx = -1.f*((float)(right+left)/(right-left));
+            float ty = -1.f*((float)(top+bottom)/(top-bottom));
+            float tz = -1.f*((float)(longe+perto)/(longe-perto));
             
             m_Matrix = Core::identity<4>();
             m_Matrix.set(2.f/(right-left),0,0);
