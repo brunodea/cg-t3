@@ -3,6 +3,16 @@
 #include "GUI/MainWindow.h"
 #include "Util/ModelViewMatrixStack.h"
 
+void help()
+{
+    std::cout << "-----------Camera Sintetica-------por Bruno Romero de Azevedo.\n";
+    std::cout << " -Com a Canvas em foco:\n";
+    std::cout << "1. Movimentacao da camera:\n";
+    std::cout << "1.1 'w'/'s': frente/tras.\n";
+    std::cout << "1.2 'a'/'d': esquerda/direita.\n";
+    std::cout << "1.3 'z'/'x': cima/baixa.\n";
+}
+
 int main()
 {
     scv::Kernel *kernel = scv::Kernel::getInstance();
