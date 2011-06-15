@@ -1,7 +1,11 @@
+/* Classe que, como o nome diz, quarda as informacoes da Janela Principal (Canvas e a Sidebar). */
+
 #include "GUI/MainWindow.h"
 #include "macros.h"
 
 using namespace GUI;
+
+MainWindow *MainWindow::m_sInstance = NULL;
 
 MainWindow::MainWindow()
 {
@@ -18,8 +22,8 @@ MainWindow::~MainWindow()
 
 void MainWindow::init()
 {
-    m_pSidebar = new Sidebar(0, 0, SIDEBAR_WIDTH, SIDEBAR_HEIGHT);
     m_pCanvas = new Canvas(SIDEBAR_WIDTH, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
+    m_pSidebar = new Sidebar(m_pCanvas, 0, 0, SIDEBAR_WIDTH, SIDEBAR_HEIGHT);
 }
 
 void MainWindow::addElementsToKernel()

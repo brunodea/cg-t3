@@ -1,3 +1,5 @@
+/* Classe que lida com a Canvas. Ela que guarda os modelos que vao ser desenhados. */
+
 #ifndef _BRUNODEA_CG_T3_CANVAS_H_
 #define _BRUNODEA_CG_T3_CANVAS_H_
 
@@ -19,13 +21,17 @@ namespace GUI
 
         void update();
         void render();
+
+        math::BezierSurface *getBezierSurface() { return &m_BezierSurface; }
+        math::BezierSurface *getBezierFlat() { return &m_BezierFlat; }
+
     protected:
         void onKeyPressed(const scv::KeyEvent &evt);
 
     private:
         void cameraInitialPosition()
         {
-            Core::Vector3 v = Core::vector3f(0, 0, -60);
+            Core::Vector3 v = Core::vector3f(40, 30, -160);
             Core::Vector3 u = Core::vector3f(0, 1, 0);
             m_Camera.setEye(v);
             m_Camera.setUp(u);

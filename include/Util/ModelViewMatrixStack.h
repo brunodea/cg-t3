@@ -24,12 +24,10 @@ namespace Util
 
         inline void pushMatrix() 
         {
-            Core::Matrix4 *t = new Core::Matrix4(*m_Top);
-            m_MatrixStack.push(*t);
-            m_Top = t;
+            m_MatrixStack.push(*m_Top);
         }
         inline void popMatrix() 
-        { 
+        {
             m_MatrixStack.pop();
             if(m_MatrixStack.empty())
             {

@@ -1,3 +1,5 @@
+/* Classe que representa uma camera sintetica. */
+
 #ifndef _BRUNDOEA_CG_T3_CAMERA_H_
 #define _BRUNDOEA_CG_T3_CAMERA_H_
 
@@ -28,8 +30,6 @@ namespace CANVAS
             Core::Vector3 perp = Core::normalize(m_vDirection3.crossProduct(m_vUp3));
             m_vUp3 = m_vDirection3.crossProduct(perp);
             m_vRight3 = perp;
-
-            //Util::MODELVIEW->transform(transMatrix());
         }
 
         void rotate(float roll_angle, float yaw_angle, float pitch_angle)
@@ -45,12 +45,13 @@ namespace CANVAS
             m_vEye3[2] += factor_z;
         }
 
+        /* Movimentacao da camera. */
         void moveForward() { m_vEye3 -= m_vDirection3*m_fSpeed; }
         void moveBackwards() { m_vEye3 += m_vDirection3*m_fSpeed; }
-        void moveLeft() { m_vEye3 -= m_vRight3*m_fSpeed; }
-        void moveRight() { m_vEye3 += m_vRight3*m_fSpeed; }
-        void moveUp() { m_vEye3 += m_vUp3*m_fSpeed; }
-        void moveDown() { m_vEye3 -= m_vUp3*m_fSpeed; }
+        void moveLeft() { m_vEye3 += m_vRight3*m_fSpeed; }
+        void moveRight() { m_vEye3 -= m_vRight3*m_fSpeed; }
+        void moveUp() { m_vEye3 -= m_vUp3*m_fSpeed; }
+        void moveDown() { m_vEye3 += m_vUp3*m_fSpeed; }
 
         Core::Vector3 getDirection() { return m_vDirection3; }
         void setDirection(Core::Vector3 &v) { m_vDirection3 = v; }

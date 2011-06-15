@@ -1,3 +1,6 @@
+/* Classe que representa um Cubo. */
+
+
 #ifndef _BRUNODEA_CUBE_HPP_
 #define _BRUNODEA_CUBE_HPP_
 

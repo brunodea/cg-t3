@@ -1,3 +1,5 @@
+//arquivo que guarda funcoes matematica.
+
 #ifndef _BRUNODEA_MATH_AUX_HPP_
 #define _BRUNODEA_MATH_AUX_HPP_
 

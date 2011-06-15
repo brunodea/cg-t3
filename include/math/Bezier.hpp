@@ -1,3 +1,5 @@
+/* Classe que guardas os pontos de controle de bezier. */
+
 #ifndef _BRUNODEA_BEZIER_HPP_
 #define _BRUNODEA_BEZIER_HPP_
 
@@ -16,7 +18,8 @@ namespace math
         Bezier() : m_vControlPoints() {}
 
         void addControlPoints(const std::vector<Core::Vector3> &ps) { m_vControlPoints.push_back(ps); }
-
+        
+        //Retorna a posicao na superficie do plano.
         Core::Vector3 point(float u, float v)
         {
             Core::Vector3 p(0);

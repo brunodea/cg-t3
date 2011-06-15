@@ -145,9 +145,9 @@ namespace Core
     }
 
     template<class T, unsigned int M, unsigned int N, unsigned int P>
-    inline Matrix<T, M, P> &operator *(Matrix<T, M, N> &m1, Matrix<T, N, P> &m2)
+    inline Matrix<T, M, P> operator *(Matrix<T, M, N> &m1, Matrix<T, N, P> &m2)
     {
-        Matrix<T, M, P> *res = new Matrix<T, M, P>();
+        Matrix<T, M, P> res;
         for(unsigned int i = 0; i < M; i++)
         {
             for(unsigned int j = 0; j < P; j++)
@@ -155,10 +155,10 @@ namespace Core
                 T val = 0;
                 for(unsigned int k = 0; k < N; k++)
                     val += m1(i, k)*m2(k, j);
-                res->set(val, i, j);
+                res.set(val, i, j);
             }
         }
-        return *res;
+        return res;
     }
 
     template<class T, unsigned int M, unsigned int N>

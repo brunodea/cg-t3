@@ -37,13 +37,13 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <OutDir>..\bin</OutDir>
+    <OutDir>..\bin\</OutDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>../include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../include/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -67,6 +67,7 @@
     <ClCompile Include="..\src\GUI\Canvas\Camera.cpp" />
     <ClCompile Include="..\src\GUI\Canvas\Canvas.cpp" />
     <ClCompile Include="..\src\GUI\Canvas\Projection.cpp" />
+    <ClCompile Include="..\src\GUI\DrawManager.cpp" />
     <ClCompile Include="..\src\GUI\MainWindow.cpp" />
     <ClCompile Include="..\src\main.cpp" />
     <ClCompile Include="..\src\Util\ModelViewMatrixStack.cpp" />
@@ -78,9 +79,12 @@
     <ClInclude Include="..\include\GUI\Canvas\Camera.h" />
     <ClInclude Include="..\include\GUI\Canvas\Canvas.h" />
     <ClInclude Include="..\include\GUI\Canvas\Projection.h" />
+    <ClInclude Include="..\include\GUI\DrawManager.hpp" />
     <ClInclude Include="..\include\GUI\MainWindow.h" />
     <ClInclude Include="..\include\GUI\Sidebar\ProjectionRadioButton.h" />
+    <ClInclude Include="..\include\GUI\Sidebar\RandomBezierButton.hpp" />
     <ClInclude Include="..\include\GUI\Sidebar\Sidebar.h" />
+    <ClInclude Include="..\include\GUI\Sidebar\ViewCheckBox.hpp" />
     <ClInclude Include="..\include\macros.h" />
     <ClInclude Include="..\include\math\Bezier.hpp" />
     <ClInclude Include="..\include\math\BezierSurface.h" />

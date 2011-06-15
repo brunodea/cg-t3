@@ -43,6 +43,9 @@
     <Filter Include="Header Files\GUI\Canvas\Model">
       <UniqueIdentifier>{1c110ba6-2c7d-488c-b42c-3665cb4d1442}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\GUI\Sidebar">
+      <UniqueIdentifier>{da419ea0-30be-4bb6-a12e-7e76da81240e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\main.cpp">
@@ -62,6 +65,9 @@
     </ClCompile>
     <ClCompile Include="..\src\GUI\Canvas\Projection.cpp">
       <Filter>Source Files\GUI\Canvas</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\GUI\DrawManager.cpp">
+      <Filter>Source Files\GUI\Sidebar</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -111,6 +117,15 @@
       <Filter>Header Files\GUI\Canvas</Filter>
     </ClInclude>
     <ClInclude Include="..\include\GUI\Sidebar\ProjectionRadioButton.h">
+      <Filter>Header Files\GUI\Sidebar</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\GUI\Sidebar\ViewCheckBox.hpp">
+      <Filter>Header Files\GUI\Sidebar</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\GUI\DrawManager.hpp">
+      <Filter>Header Files\GUI\Canvas</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\GUI\Sidebar\RandomBezierButton.hpp">
       <Filter>Header Files\GUI\Sidebar</Filter>
     </ClInclude>
   </ItemGroup>

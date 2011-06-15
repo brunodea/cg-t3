@@ -1,3 +1,5 @@
+/* Classe que representa uma Esfera. */
+
 #ifndef _BRUNODEA_SPHERE_HPP_
 #define _BRUNODEA_SPHERE_HPP_
 

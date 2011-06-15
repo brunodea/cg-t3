@@ -9,14 +9,26 @@ namespace GUI
     class MainWindow
     {
     public:
-        MainWindow();
         ~MainWindow();
 
+        static MainWindow *instance()
+        {
+            if(m_sInstance == NULL)
+                m_sInstance = new MainWindow();
+            return m_sInstance;
+        }
+
+        Canvas *getCanvas() { return m_pCanvas; }
+
     private:
+        MainWindow();
+
         void init();
         void addElementsToKernel();
 
     private:
+        static MainWindow *m_sInstance;
+
         Sidebar *m_pSidebar;
         Canvas *m_pCanvas;
 

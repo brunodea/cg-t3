@@ -1,9 +1,12 @@
+/* Ajusta qual projecao esta sendo usada e arruma as matrizes. Singleton. */
+
 #ifndef _BRUNODEA_PROJECTION_HPP_
 #define _BRUNODEA_PROJECTION_HPP_
 
 #include "Core/matrix_functions.hpp"
 #include "Core/Matrix.hpp"
 #include "Core/Vector.hpp"
+#include "GUI/Canvas/Camera.h"
 
 namespace CANVAS
 {

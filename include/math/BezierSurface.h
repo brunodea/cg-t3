@@ -1,3 +1,5 @@
+/* Superficie de Bezier. Guarda as posicoes do plano a partir de certos pontos de controle gerados aleatoriamente. */
+
 #ifndef _BRUNODEA_BEZIER_SURFACE_HPP_
 #define _BRUNODEA_BEZIER_SURFACE_HPP_
 
@@ -159,9 +161,9 @@ namespace math
                 std::vector<Core::Vector3> vs;
                 for(unsigned int j = 0; j < m_iDegree; j++)
                 {
-                    float x = i;
-                    float y = rand()%10*pow(-1.f,(rand()%2)+1);
-                    float z = j;
+                    float x = (float)i;
+                    float y = (float)(rand()%10*pow(-1.f,(rand()%2)+1));
+                    float z = (float)j;
                     vs.push_back(Core::vector3f(x,y,z));
                 }
                 m_Bezier.addControlPoints(vs);
