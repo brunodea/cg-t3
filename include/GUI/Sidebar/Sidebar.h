@@ -88,6 +88,9 @@ namespace GUI
             scv::Label *jl = new scv::Label(scv::Point(10,y+mov->getHeight()*6), "j/l - yaw");
             scv::Label *uo = new scv::Label(scv::Point(10,y+mov->getHeight()*7), "u/o - pitch");
 
+            
+            scv::Label *init = new scv::Label(scv::Point(10,y+mov->getHeight()*9), "1 - Volta para posicao inicial");
+
             this->addComponent(mov);
             this->addComponent(ws);
             this->addComponent(ad);
@@ -97,6 +100,8 @@ namespace GUI
             this->addComponent(ik);
             this->addComponent(jl);
             this->addComponent(uo);
+
+            this->addComponent(init);
         }
 
     private:

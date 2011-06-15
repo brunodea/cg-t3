@@ -86,6 +86,7 @@ void Canvas::drawObjects()
     if(Util::DRAW_MANAGER->drawObject(Util::DrawManager::SPHERES))
     {
         glColor4f(0.82f, 0.41f, 0.11f, 1.f);
+        glLineWidth(2.f);
         Util::MODELVIEW->pushMatrix();
             Util::MODELVIEW->scale(5.f,5.f,5.f);
             Util::MODELVIEW->translate(0,5,0);
@@ -107,6 +108,7 @@ void Canvas::drawObjects()
     if(Util::DRAW_MANAGER->drawObject(Util::DrawManager::CUBES))
     {
         glColor4f(0.f,0.f,1.f,1.f);
+        glLineWidth(2.f);
         Util::MODELVIEW->pushMatrix();
             for(unsigned int i = 0; i < m_Cubes.size(); i++)
             {
