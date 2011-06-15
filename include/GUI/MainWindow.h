@@ -1,3 +1,5 @@
+/* Classe MainWindow: classe que ajusta os componentes da janela. */
+
 #ifndef _BRUNODEA_CG_T3_MAIN_WINDOW_H_
 #define _BRUNODEA_CG_T3_MAIN_WINDOW_H_
 

@@ -59,13 +59,6 @@ namespace CANVAS
             m_Matrix = Core::identity<4>();
             m_Matrix.set(1.f/-100.f,3,2);
             m_Matrix.set(0,3,3);
-            //float f = (float)1.f/tan(fovy/2.f); //cotangent
-
-            //res.set(f/aspect,0,0);
-            //res.set(f,1,1);
-            //res.set((zFar+zNear)/(zNear-zFar),2,2);
-            //res.set(-1,3,2);
-            //res.set((2*zFar*zNear)/(zNear-zFar),2,3);
         }
         void setOrtho()
         {

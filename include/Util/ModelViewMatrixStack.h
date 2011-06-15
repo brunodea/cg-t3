@@ -1,3 +1,5 @@
+/* ModelViewMatrixStack eh uma pilha de matrizes que eh utilizada no mesmo estilo do openGL. Elas vao sendo guardadas conforme vao sendo necessarias. */
+
 #ifndef _BRUNODEA_CG_T3_MATRIX_HANDLER_HPP_
 #define _BRUNODEA_CG_T3_MATRIX_HANDLER_HPP_
 

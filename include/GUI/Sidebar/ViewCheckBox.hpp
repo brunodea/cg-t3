@@ -1,3 +1,5 @@
+/* Checkbox que diz se eh ou nao pra desenhar determinado objeto da cena. */
+
 #ifndef _BRUNODEA_VIEW_CHECKBOX_HPP_
 #define _BRUNODEA_VIEW_CHECKBOX_HPP_
 

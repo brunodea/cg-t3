@@ -1,3 +1,5 @@
+/* Classe que lida com os botoes para mudar aleatoriamente o y dos pontos de controles dos planos. */
+
 #ifndef _BRUNODEA_RANDOM_BEZIER_BUTTON_HPP_
 #define _BRUNODEA_RANDOM_BEZIER_BUTTON_HPP_
 

@@ -1,4 +1,4 @@
-/**/
+/* Classe que faz acoes dependendo de qual RadioButton foi selecionado. Esses radiobuttons sao relativos ao tipo de projecao. */
 
 #ifndef _BRUNODEA_PROJECTION_BUTTON_GROUP_HPP_
 #define _BRUNODEA_PROJECTION_BUTTON_GROUP_HPP_

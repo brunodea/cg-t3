@@ -1,3 +1,5 @@
+/* Classe que arruma a sidebar com os botoes, checkboxes, labels, etc. */
+
 #ifndef _BRUNODEA_CG_T3_SIDEBAR_H_
 #define _BRUNODEA_CG_T3_SIDEBAR_H_
 
